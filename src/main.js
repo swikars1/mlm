@@ -3,9 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './plugins/iview.js'
+import _ from 'lodash'
 import '@/assets/stylesheets/app.sass'
 
 Vue.config.productionTip = false
+Vue.prototype._ = _
 
 new Vue({
   router,
