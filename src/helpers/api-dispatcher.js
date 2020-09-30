@@ -23,7 +23,7 @@ const apiDispatcher = (
   context.commit(mutationTypes.PENDING, { loadingKey, action, statusKey })
   return resource[action](params)
     .then(response => {
-      let resourceData = response.data
+      let resourceData = response.data.data
       if (!resourceData) {
         throw 'response should be wrapped in data key'
       }

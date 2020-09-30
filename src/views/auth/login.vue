@@ -20,7 +20,6 @@ export default {
   },
   methods: {
     login() {
-      debugger
       this.$router.push('/')
     }
   }
