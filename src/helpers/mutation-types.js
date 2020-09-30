@@ -1,0 +1,8 @@
+const MutationTypes = {
+  SUCCESS: 'SUCCESS_TYPE',
+  FAILURE: 'FAILURE_TYPE',
+  PENDING: 'PENDING_TYPE',
+  RESOLVE_PENDING: 'RESOLVE_PENDING_TYPE'
+}
+
+export default MutationTypes
