@@ -5,6 +5,7 @@ import store from './store'
 import './plugins/iview.js'
 import _ from 'lodash'
 import '@/assets/stylesheets/app.sass'
+import '@/components/_globaling'
 
 Vue.config.productionTip = false
 Vue.prototype._ = _
