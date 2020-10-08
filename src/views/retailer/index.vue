@@ -1,28 +1,15 @@
 <template>
     <div class="table-index-page">
         <header>
-          <h1>Customers</h1>
+          <h1>Retailers</h1>
         </header>
          <BaseTable
           :columns="columns"
-          :data="customers"
-          :loading="customersLoading"
+          :data="retailers"
+          :loading="retailersLoading"
           :deletable="false"
         >
-          <template v-slot:custom-action>
-            <Tooltip
-              placement="left-start"
-              trigger="hover"
-              content="Add Purchase"
-            >
-              <Icon
-                class="pointer hover-green-text m-r-1" 
-                type="md-add-circle"
-                size="20"
-                @click="handlePayment"
-              />
-            </Tooltip>
-          </template>
+          
         </BaseTable>
         <BaseDrawer
           v-model="paymentDrawer"
@@ -35,16 +22,16 @@
         </BaseDrawer>
         <BaseDrawer
           v-model="showDrawer"
-          title="Create Customer"
+          title="Create Retailer"
         >
-          <CustomerNew
+          <RetailerNew
             v-if="showDrawer"
             :close-drawer="handleCreate"
           />
         </BaseDrawer>
       <footer class="table-footer">
         <BaseButton class="m-l-1" @click="handleCreate">
-          Create Customer
+          Create Retailer
         </BaseButton>
       </footer>
     </div>
@@ -54,29 +41,29 @@
 <script>
  
 import { mapGetters } from 'vuex'
-import { CUSTOMER_COLUMNS } from '@/helpers/columns'
+import { RETAILER_COLUMNS } from '@/helpers/columns'
 import { Icon, Tooltip } from 'view-design'
-import CustomerNew from './new'
+import RetailerNew from './new'
 import PaymentForm from './payment-form'
 
-const CUSTOMER_STORE_KEY = 'customerStore'
+const RETAILER_STORE_KEY = 'retailerStore'
 
 export default {
   components: {
     Icon,
     Tooltip,
-    CustomerNew,
+    RetailerNew,
     PaymentForm
   },
   data() {
     return {
-      columns: CUSTOMER_COLUMNS,
+      columns: RETAILER_COLUMNS,
       showDrawer: false,
       paymentDrawer: false
     }
   },
   mounted() {
-    this.$store.dispatch(`${CUSTOMER_STORE_KEY}/getCustomers`)
+    this.$store.dispatch(`${RETAILER_STORE_KEY}/getRetailers`)
   },
   methods: {
     handleCreate(){
@@ -88,8 +75,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      customers: `${CUSTOMER_STORE_KEY}/customers`,
-      customersLoading: `${CUSTOMER_STORE_KEY}/customersLoading`
+      retailers: `${RETAILER_STORE_KEY}/retailers`,
+      retailersLoading: `${RETAILER_STORE_KEY}/retailersLoading`
     })
   }
 }
