@@ -1,3 +1,108 @@
+html
+  font-size: 62.5%
+
+body
+  font-family: $primary-font
+  background: ghostwhite
+  overflow-y: auto
+  *
+    color: #272727
+
+.outer-container
+::-webkit-scrollbar
+  width: 9px
+  height: 6px
+  cursor: pointer
+
+::-webkit-scrollbar-track
+  box-shadow: inset 0 0 4px lightgray
+  border-radius: 10px
+
+::-webkit-scrollbar-thumb
+  background: rgba(0, 0, 0, 0.5)
+  border-radius: 10px
+  &:hover
+    background: rgb(0, 0, 0)
+
 .main-wrapper
   height: 100%
   background: white
+
+.width-100
+  width: 100%
+
+.ivu-date-picker
+  width: 100%
+
+.ivu-layout-content
+  position: relative
+
+.table-index-page
+  .table
+    margin-top: $header-height
+    margin-bottom: $footer-height
+  header
+    position: fixed
+    top: 0
+    height: $header-height
+    background: white
+    width: 100%
+    padding: 1rem
+    z-index: 99
+    h1
+      font-size: 2.3rem
+  footer
+    display: flex
+    justify-content: flex-end
+    position: fixed
+    bottom: 0
+    height: $footer-height
+    width: calc(100% - #{$menu-width})    
+    background: white
+    z-index: 99
+    padding: 1rem
+    box-shadow: inset 0px 23px 40px -47px rgba(0, 0, 0, 0.75)
+    button
+      align-self: center
+
+.drawer
+  .ivu-drawer-header
+    background: #2c8cf0
+    .ivu-drawer-header-inner
+      color: white
+  .ivu-drawer-body
+    margin-bottom: $footer-height
+    height: calc(100% - 51px - #{$footer-height})
+    padding: 0
+    section
+      padding: 1rem 2rem
+    footer
+      display: flex
+      position: fixed
+      bottom: 0
+      height: $footer-height
+      background: white
+      width: 100%
+      z-index: 999
+      padding: 1rem 2rem
+      box-shadow: inset 0px 23px 40px -47px rgba(0,0,0,0.75)
+  .ivu-drawer-close
+    i
+      font-weight: 700
+      color: white
+
+.m-l-1
+  margin-left: 1rem
+
+.m-r-1
+  margin-right: 1rem
+
+.hover-green-text
+  &:hover
+    color: green
+
+.pointer
+  cursor: pointer
+  transition: transform .3s
+  &:hover
+    transform: translateY(-1px)

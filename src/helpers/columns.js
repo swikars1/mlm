@@ -1,22 +1,52 @@
 const CUSTOMER_COLUMNS = [
 	{
 	  title: 'Name',
-	  key: 'name'
+	  key: 'name',
 	},
 	{
-	  title: 'email',
-	  key: 'email'
+	  title: 'Email',
+	  key: 'email',
 	},
 	{
-		title: 'PhoneNo',
-		key: 'phoneNo'
+		title: 'Phone No',
+		key: 'phoneNo',
 	},
 	{
 		title: 'Address',
-		key: 'address'
+		key: 'address',
+	},
+	{
+		title: 'Action',
+		slot: 'action',
+		align: 'right'
+	}
+]
+
+const RETAILER_COLUMNS = [
+	{
+	  title: 'Name',
+	  key: 'name',
+	},
+	{
+	  title: 'Pan No',
+	  key: 'panNumber',
+	},
+	{
+		title: 'Phone No',
+		key: 'phoneNo',
+	},
+	{
+		title: 'Address',
+		key: 'address',
+	},
+	{
+		title: 'Action',
+		slot: 'action',
+		align: 'right'
 	}
 ]
 
 export {
-	CUSTOMER_COLUMNS
+	CUSTOMER_COLUMNS,
+	RETAILER_COLUMNS,
 }
