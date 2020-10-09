@@ -8,7 +8,6 @@
       v-on="$listeners"
       :items="items"
       @on-query-change="(q) => dispatch(q)"
-      @on-change="handleChange"
       remote
       filterable
     >
@@ -50,14 +49,11 @@ export default {
     resource: {
       type: String,
       default: ''
-    },
-    filter: {
-      type: Object,
-      default: () => {}
     }
   },
   mounted() {
-     this.$store.dispatch(`${this.resource}Store/get${plural(_.upperFirst(this.resource))}`, { q: '' })
+    let params = { q: '' }
+    this.$store.dispatch(`${this.resource}Store/get${plural(_.upperFirst(this.resource))}`, params)
   },
   computed: {
     items() {
@@ -67,15 +63,8 @@ export default {
     }
   },
   methods: {
-    handleChange() {
-      if (!_.isEmpty(this.filter))
-        this.$store.dispatch(`${this.resource}Store/get${plural(_.upperFirst(this.resource))}`, { q: '', ...this.filter })
-    },
     dispatch: _.debounce(function(q = '') {
-      let params = { q }
-      if (!_.isEmpty(this.filter))
-        params = { q, ...this.filter }
-      this.$store.dispatch(`${this.resource}Store/get${plural(_.upperFirst(this.resource))}`, params)
+      this.$store.dispatch(`${this.resource}Store/get${plural(_.upperFirst(this.resource))}`, { q })
     }, 600)
   }
 }
