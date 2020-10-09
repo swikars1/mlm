@@ -20,12 +20,14 @@
           @on-change="handleRetailerChange"
           clearable
         />
-        <BaseRemoteSelect
+        <BaseSelect
           placeholder="Select Products of Retailer"
           v-model="customer.productId"
-          resource="product"
-          :filter="{ retailerId: customer.retailerId }"
+          :items="products"
           :disabled="!customer.retailerId"
+          @on-query-change="q => getRetailerProducts(q)"
+          filterable
+          remote
           clearable
         />
         <BaseInput 
@@ -33,6 +35,7 @@
           type="number"
           label="Quantity" 
           placeholder="Qty"
+          :disabled="!customer.productId"
         />
       </section>
       <footer>
@@ -74,13 +77,18 @@ export default {
       await this.$store.dispatch(`${CUSTOMER_STORE_KEY}/${this.currentAction}Customer`, { customer: this.customer })
       this.closeDrawer()
     },
+    getRetailerProducts(q) {
+      this.$store.dispatch('productStore/getProducts', { q, retailerId: this.customer.retailerId })
+    },
     handleRetailerChange() {
+      this.$store.dispatch('productStore/getProducts', { retailerId: this.customer.retailerId })
       this.customer = new Customer({ ...this.customer, productId: "" })
     }
   },
   computed: {
     ...mapGetters({
       customerSaveLoading: `customerStore/customerSaveLoading`,
+      products: `productStore/products`
     }),
   }
 }
