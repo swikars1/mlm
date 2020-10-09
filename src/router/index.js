@@ -5,6 +5,8 @@ import AppLayout from '@/views/layout/app-layout'
 import LoginIndex from '@/views/auth/login-index'
 import CustomerIndex from '@/views/customer/index'
 import RetailerIndex from '@/views/retailer/index'
+import RetailerTypeIndex from '@/views/retailer-type/index'
+
 
 
 Vue.use(VueRouter)
@@ -34,6 +36,16 @@ const routes = [
       {
         path: '',
         component: RetailerIndex
+      }
+    ]
+  },
+  {
+    path: '/retailer-type',
+    component: AppLayout,
+    children: [
+      {
+        path: '',
+        component: RetailerTypeIndex
       }
     ]
   }

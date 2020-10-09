@@ -1,28 +1,29 @@
 <template>
     <div class="table-index-page">
         <header>
-          <h1>Retailers</h1>
+          <h1>RetailerTypes</h1>
         </header>
          <BaseTable
           :columns="columns"
-          :data="retailers"
-          :loading="retailersLoading"
+          :data="retailerTypes"
+          :loading="retailerTypesLoading"
           :deletable="true"
+          :editable="true"
         >
           
         </BaseTable>
         <BaseDrawer
           v-model="showDrawer"
-          title="Create Retailer"
+          title="Create RetailerType"
         >
-          <RetailerNew
+          <RetailerTypeNew
             v-if="showDrawer"
             :close-drawer="handleCreate"
           />
         </BaseDrawer>
       <footer class="table-footer">
         <BaseButton class="m-l-1" @click="handleCreate">
-          Create Retailer
+          Create RetailerType
         </BaseButton>
       </footer>
     </div>
@@ -32,40 +33,37 @@
 <script>
  
 import { mapGetters } from 'vuex'
-import { RETAILER_COLUMNS } from '@/helpers/columns'
+import { RETAILER_TYPE_COLUMNS } from '@/helpers/columns'
 import { Icon, Tooltip } from 'view-design'
-import RetailerNew from './new'
+import RetailerTypeNew from './new'
 
-const RETAILER_STORE_KEY = 'retailerStore'
+const RETAILER_TYPE_STORE_KEY = 'retailerTypeStore'
 
 export default {
   components: {
     Icon,
     Tooltip,
-    RetailerNew,
+    RetailerTypeNew,
   },
   data() {
     return {
-      columns: RETAILER_COLUMNS,
+      columns: RETAILER_TYPE_COLUMNS,
       showDrawer: false,
-      paymentDrawer: false
     }
   },
   mounted() {
-    this.$store.dispatch(`${RETAILER_STORE_KEY}/getRetailers`)
+    this.$store.dispatch(`${RETAILER_TYPE_STORE_KEY}/getRetailerTypes`)
   },
   methods: {
     handleCreate(){
       this.showDrawer = !this.showDrawer
     },
-    handlePayment() {
-      this.paymentDrawer = !this.paymentDrawer
-    }
+    
   },
   computed: {
     ...mapGetters({
-      retailers: `${RETAILER_STORE_KEY}/retailers`,
-      retailersLoading: `${RETAILER_STORE_KEY}/retailersLoading`
+      retailerTypes: `${RETAILER_TYPE_STORE_KEY}/retailerTypes`,
+      retailerTypesLoading: `${RETAILER_TYPE_STORE_KEY}/retailerTypesLoading`
     })
   }
 }

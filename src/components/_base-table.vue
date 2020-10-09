@@ -48,12 +48,15 @@
 
 import { VclTable } from 'vue-content-loading'
 import { Table, Icon } from 'view-design'
+import * as models from '@/models'
+import plural from '@/helpers/resource-name-pluralizer'
+import BaseModal from '@/components/_base-modal'
 
 export default {
 	data() {
 		return{
 			editDrawer: false,
-			currentModel: false
+			currentModel: false,
 		}
 	},
 	components: {
@@ -61,7 +64,9 @@ export default {
 		Table,
 		Icon,
 		EditCustomer: () => import('@/views/customer/edit'),
-		EditRetailer: () => import('@/views/retailer/edit')
+		EditRetailer: () => import('@/views/retailer/edit'),
+		EditRetailerType: () => import('@/views/retailer-type/edit'),
+
 	},
 	props: {
 		columns: {
@@ -88,11 +93,12 @@ export default {
 	computed: {
     editComponent() {
       return `Edit${this.currentModel}`
-    },
+    }
 	},
 	methods: {
     closeEditDrawer() {
       this.editDrawer = false
+
     },
 		handleEdit(row, index) {
 			this.currentModel = row.className
@@ -100,7 +106,36 @@ export default {
 			this.editDrawer = true
 		},
 		handleDelete(row, index) {
-
+			const { className } = row 
+      const currentModel = models[className]
+      const storePrefix = _.camelCase(className)
+      const loadingKey = this.$store.getters[
+        `${storePrefix}Store/${plural(storePrefix)}Loading`
+      ]
+      BaseModal.render({
+        props: {
+          title: 'Are you sure you want to delete ?',
+          content: 'Note: Item will be deleted permanently',
+          loading: loadingKey,
+          type: 'confirm',
+          okText: 'confirm',
+          cancelText: 'cancel',
+          closable: true,
+          onOk: () => {
+            const storeKey = `${storePrefix}Store/destroy${className}`
+            this.$store
+              .dispatch(storeKey, {
+                [storePrefix]: new currentModel(row)
+              })
+              .then(() => {
+                this.$store.dispatch(
+                  `${storePrefix}Store/get${_.upperFirst(plural(storePrefix))}`
+                )
+                // BaseModal.remove()
+              })
+          }
+        }
+      })
 		}
 	}
 }

@@ -25,10 +25,17 @@ const UPDATE_PATH = ({ resourceName, id }) => ({
   method: 'PUT'
 })
 
+const DESTROY_PATH = ({ resourceName, id }) => ({
+  url: `${API_URL_PREFIX}/${resourceName}/${id}`,
+  method: 'DELETE'
+})
+
+
 export {
   BASE_URL,
   INDEX_PATH,
   CREATE_PATH,
   SHOW_PATH,
-  UPDATE_PATH
+  UPDATE_PATH,
+  DESTROY_PATH
 }

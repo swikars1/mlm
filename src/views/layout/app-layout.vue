@@ -10,7 +10,7 @@
         </div>
         <MenuItem 
           v-for="item in menus" 
-          :name="item.title" 
+          :name="item.route" 
           :key="item.route"
           :to="item.route"
         >
@@ -48,6 +48,11 @@ export default {
           icon: 'ios-briefcase'
         },
         {
+          title: 'Retailer Types',
+          route: '/retailer-type',
+          icon: 'ios-briefcase'
+        },
+        {
           title: 'Payments',
           route: '/payments',
           icon: 'ios-card'
@@ -63,7 +68,7 @@ export default {
           icon: 'md-people'
         },
       ],
-      activeName: 'Customers'
+      activeName: this.$route.path
     }
   },
   components: {
@@ -99,7 +104,7 @@ export default {
     span
       display: inline-block
       overflow: hidden
-      width: 69px
+      width: 100%
       text-overflow: ellipsis
       white-space: nowrap
       vertical-align: bottom
