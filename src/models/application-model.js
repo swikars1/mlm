@@ -1,5 +1,5 @@
 import camelToSnake from '@/helpers/camel-to-snake'
-import { INDEX_PATH, CREATE_PATH, SHOW_PATH, UPDATE_PATH } from '@/helpers/api-url'
+import { INDEX_PATH, CREATE_PATH, SHOW_PATH, UPDATE_PATH, DESTROY_PATH } from '@/helpers/api-url'
 import { v1HTTPService } from '@/helpers/http-service'
 import plural from '@/helpers/resource-name-pluralizer'
 
@@ -36,6 +36,12 @@ class ApplicationModel {
     const data = className ? { [_.snakeCase(className)]: serializedData } : serializedData
     const resourceName = _.snakeCase(plural(className))
     return v1HTTPService({ ...UPDATE_PATH({ resourceName, id: serializedData.id }), data })
+  }
+  destroy() {
+    const { className } = this
+    const serializedData = camelToSnake(this)
+    const resourceName = _.snakeCase(plural(className))
+    return v1HTTPService({ ...DESTROY_PATH({ resourceName, id: serializedData.id }), serializedData })
   }
 }
 

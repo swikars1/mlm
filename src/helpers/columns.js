@@ -45,8 +45,20 @@ const RETAILER_COLUMNS = [
 		align: 'right'
 	}
 ]
+const RETAILER_TYPE_COLUMNS = [
+	{
+	  title: 'Name',
+	  key: 'name',
+	},
+	{
+		title: 'Action',
+		slot: 'action',
+		align: 'right'
+	}
+]
 
 export {
 	CUSTOMER_COLUMNS,
 	RETAILER_COLUMNS,
+	RETAILER_TYPE_COLUMNS,
 }
