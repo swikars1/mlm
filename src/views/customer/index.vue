@@ -9,7 +9,7 @@
           :loading="customersLoading"
           :deletable="false"
         >
-          <template v-slot:custom-action>
+          <template #default="{ row }">
             <Tooltip
               placement="left-start"
               trigger="hover"
@@ -19,7 +19,7 @@
                 class="pointer hover-green-text m-r-1" 
                 type="md-add-circle"
                 size="20"
-                @click="handlePayment"
+                @click="handlePayment(row)"
               />
             </Tooltip>
           </template>
@@ -31,6 +31,7 @@
           <PaymentForm
             v-if="paymentDrawer"
             :close-drawer="handlePayment"
+            :id="id"
           />
         </BaseDrawer>
         <BaseDrawer
@@ -58,6 +59,7 @@ import { CUSTOMER_COLUMNS } from '@/helpers/columns'
 import { Icon, Tooltip } from 'view-design'
 import CustomerNew from './new'
 import PaymentForm from './payment-form'
+import Customer from '@/models'
 
 const CUSTOMER_STORE_KEY = 'customerStore'
 
@@ -72,7 +74,8 @@ export default {
     return {
       columns: CUSTOMER_COLUMNS,
       showDrawer: false,
-      paymentDrawer: false
+      paymentDrawer: false,
+      id: null
     }
   },
   mounted() {
@@ -82,7 +85,8 @@ export default {
     handleCreate(){
       this.showDrawer = !this.showDrawer
     },
-    handlePayment() {
+    handlePayment(row) {
+      this.id = row && row.id
       this.paymentDrawer = !this.paymentDrawer
     }
   },

@@ -6,8 +6,9 @@ import LoginIndex from '@/views/auth/login-index'
 import CustomerIndex from '@/views/customer/index'
 import RetailerIndex from '@/views/retailer/index'
 import RetailerTypeIndex from '@/views/retailer-type/index'
-
-
+import ProductIndex from '@/views/product/index'
+import PaymentIndex from '@/views/payment/index'
+import UserIndex from '@/views/user/index'
 
 Vue.use(VueRouter)
 
@@ -46,6 +47,36 @@ const routes = [
       {
         path: '',
         component: RetailerTypeIndex
+      }
+    ]
+  },
+  {
+    path: '/products',
+    component: AppLayout,
+    children: [
+      {
+        path: '',
+        component: ProductIndex
+      }
+    ]
+  },
+  {
+    path: '/payments',
+    component: AppLayout,
+    children: [
+      {
+        path: '',
+        component: PaymentIndex
+      }
+    ]
+  },
+  {
+    path: '/users',
+    component: AppLayout,
+    children: [
+      {
+        path: '',
+        component: UserIndex
       }
     ]
   }

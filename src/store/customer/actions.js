@@ -44,10 +44,19 @@ const getCustomer = (context, params) =>
     params
   })
 
+const addPayment = (context, { customer: resource }) => 
+  apiDispatcher(context, {
+    resource,
+    storeKey: 'customer',
+    loadingKey: 'customerSaveLoading',
+    action: 'addPayment'
+  })
+
 export default {
   getCustomers,
   createCustomer,
   updateCustomer,
   getCustomer,
-  destroyCustomer
+  destroyCustomer,
+  addPayment
 }

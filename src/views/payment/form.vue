@@ -1,46 +1,52 @@
 <template>
   <div class="customer-payment-form">
     <Form
-      :model="customer"
+      :model="payment"
       ref="customer-payment"
       @submit.native.prevent="handleFormSubmit"
       label-position="top"
     >
       <section>
+        <BaseRemoteSelect
+          placeholder="Select Customer"
+          v-model="payment.customerId"
+          resource="customer"
+          clearable
+        />
         <BaseInput 
-          v-model="customer.name"
+          v-model="payment.name"
           type="text" 
           label="Payment Title" 
           placeholder="Payment Title " 
         />
         <BaseRemoteSelect
           placeholder="Select Retailer"
-          v-model="customer.retailerId"
+          v-model="payment.retailerId"
           resource="retailer"
           @on-change="handleRetailerChange"
           clearable
         />
         <BaseSelect
           placeholder="Select Products of Retailer"
-          v-model="customer.productId"
+          v-model="payment.productId"
           :items="products"
-          :disabled="!customer.retailerId"
+          :disabled="!payment.retailerId"
           @on-query-change="q => getRetailerProducts(q)"
           filterable
           remote
           clearable
         />
         <BaseInput 
-          v-model="customer.qty" 
+          v-model="payment.qty" 
           type="number"
           label="Quantity" 
           placeholder="Qty"
-          :disabled="!customer.productId"
+          :disabled="!payment.productId"
         />
       </section>
       <footer>
         <BaseButton
-          :loading="customerSaveLoading"
+          :loading="paymentSaveLoading"
           html-type="submit"
         >
           Submit
@@ -53,53 +59,44 @@
 <script>
 import { mapGetters } from 'vuex'
 import { Form } from 'view-design'
-import Customer from '@/models/customer'
+import  Payment  from '@/models/payment'
 
-const CUSTOMER_STORE_KEY = 'customerStore'
+const PAYMENT_STORE_KEY = 'paymentStore'
 
 export default {
   components: { Form },
   data() {
     return {
-      customer: new Customer()
+      payment: new Payment()
     }
   },
   props: {
     closeDrawer: {
       type: Function,
       required: true,
-    },
-    id: {
-      type: Number,
-      required: true
     }
   },
   mounted() {
-    if(this.id) this.customer = new Customer({ ...this.customer, id: this.id })
   },
   methods: {
     async handleFormSubmit() {
-      await this.$store.dispatch(`${CUSTOMER_STORE_KEY}/addPayment`, { customer: this.customer })
+      await this.$store.dispatch(`${PAYMENT_STORE_KEY}/createPayment`, { payment: this.payment })
+      await this.$store.dispatch(`${PAYMENT_STORE_KEY}/getPayments`)
       this.closeDrawer()
     },
     getRetailerProducts(q) {
-      this.$store.dispatch('productStore/getProducts', { q, retailerId: this.customer.retailerId })
+      this.$store.dispatch('productStore/getProducts', { q, retailerId: this.payment.retailerId })
     },
     handleRetailerChange() {
-      this.$store.dispatch('productStore/getProducts', { retailerId: this.customer.retailerId })
-      this.customer = new Customer({ ...this.customer, productId: "" })
+      this.$store.dispatch('productStore/getProducts', { retailerId: this.payment.retailerId })
+      this.payment = new Payment({ ...this.payment, productId: "" })
     }
   },
   computed: {
     ...mapGetters({
-      customerSaveLoading: `customerStore/customerSaveLoading`,
+      paymentSaveLoading: `paymentStore/paymentSaveLoading`,
       products: `productStore/products`
     }),
-  },
-  watch: {
-    id(newVal) {
-      this.customer = new Customer({ ...this.customer, id: newVal })
-    }
   }
 }
 </script>

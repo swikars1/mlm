@@ -90,6 +90,9 @@ export default {
 </script>
 <style lang="sass" scoped>
   @import "@/assets/stylesheets/variables.sass"
+  .ivu-layout-sider
+    max-width: 21.3rem !important
+    flex: 0 0 21.3rem !important
   .logo-wraper
     height: 67px
   .ivu-menu-item
