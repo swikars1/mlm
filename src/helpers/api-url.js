@@ -30,6 +30,10 @@ const DESTROY_PATH = ({ resourceName, id }) => ({
   method: 'DELETE'
 })
 
+const CUSTOMER_PAYMENT_PATH = ({ id }) => ({
+  url: `${API_URL_PREFIX}/customers/${id}/add_payment`,
+  method: 'POST'
+})
 
 export {
   BASE_URL,
@@ -37,5 +41,6 @@ export {
   CREATE_PATH,
   SHOW_PATH,
   UPDATE_PATH,
-  DESTROY_PATH
+  DESTROY_PATH,
+  CUSTOMER_PAYMENT_PATH
 }

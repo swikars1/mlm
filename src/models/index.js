@@ -3,9 +3,7 @@ import Payment from './payment'
 import Retailer from './retailer'
 import RetailerType from './retailer-type'
 import Product from './product'
-
-
-
+import User from './user'
 
 export {
   Customer,
@@ -13,4 +11,5 @@ export {
   Retailer,
   RetailerType,
   Product,
+  User,
 }

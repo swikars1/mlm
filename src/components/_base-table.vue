@@ -11,7 +11,7 @@
       style="width:100%;
     ">
 			<template slot-scope="{ row, index }" slot="action">
-        <slot name="custom-action" />
+        <slot :row="row" />
 				<Icon
           v-if="editable"
 					class="pointer"
@@ -66,7 +66,8 @@ export default {
 		EditCustomer: () => import('@/views/customer/edit'),
 		EditRetailer: () => import('@/views/retailer/edit'),
 		EditRetailerType: () => import('@/views/retailer-type/edit'),
-
+    EditProduct: () => import('@/views/product/edit'),
+    EditPayment: () => import('@/views/payment/edit'),
 	},
 	props: {
 		columns: {
@@ -96,6 +97,9 @@ export default {
     }
 	},
 	methods: {
+    handleEmmision(row) {
+      this.$emit('on-custom-click', row)
+    },
     closeEditDrawer() {
       this.editDrawer = false
 
