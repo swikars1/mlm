@@ -9,8 +9,33 @@
           :loading="retailersLoading"
           :deletable="true"
         >
-          
+          <template #default="{ row }">
+            <Tooltip
+              placement="left-start"
+              trigger="hover"
+              content="Add Image"
+            >
+              <Icon
+                class="pointer hover-green-text m-r-1" 
+                type="md-image"
+                size="19"
+                @click="handleAddImage(row)"
+              />
+            </Tooltip>
+          </template>
         </BaseTable>
+        <BaseDrawer
+          v-model="uploadDrawer"
+          title="Add Image"
+        >
+          <ImageUpload
+            resource="retailer"
+            v-if="uploadDrawer"
+            :close-drawer="handleAddImage"
+            :id="id"
+            @on-upload="(a) => hanldeCloseImageDrawer(a)"
+          />
+        </BaseDrawer>
         <BaseDrawer
           v-model="showDrawer"
           title="Create Retailer"
@@ -35,6 +60,7 @@ import { mapGetters } from 'vuex'
 import { RETAILER_COLUMNS } from '@/helpers/columns'
 import { Icon, Tooltip } from 'view-design'
 import RetailerNew from './new'
+import ImageUpload from '@/components/image-upload'
 
 const RETAILER_STORE_KEY = 'retailerStore'
 
@@ -43,24 +69,30 @@ export default {
     Icon,
     Tooltip,
     RetailerNew,
+    ImageUpload
   },
   data() {
     return {
       columns: RETAILER_COLUMNS,
       showDrawer: false,
-      paymentDrawer: false
+      uploadDrawer: false,
+      id: null
     }
   },
   mounted() {
     this.$store.dispatch(`${RETAILER_STORE_KEY}/getRetailers`)
   },
   methods: {
-    handleCreate(){
+    handleCreate() {
       this.showDrawer = !this.showDrawer
     },
-    handlePayment() {
-      this.paymentDrawer = !this.paymentDrawer
-    }
+    handleAddImage(row) {
+      this.id = row && row.id
+      this.uploadDrawer = !this.uploadDrawer
+    },
+    hanldeCloseImageDrawer(a) {
+      this.uploadDrawer = false
+    },
   },
   computed: {
     ...mapGetters({

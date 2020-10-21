@@ -44,10 +44,20 @@ const getRetailer = (context, params) =>
     params
   })
 
+const uploadImage = (context, params) => 
+  apiDispatcher(context, {
+    resource: new Retailer(params),
+    storeKey: 'retailers',
+    loadingKey: 'retailerSaveLoading',
+    action: 'uploadImage',
+    commitType: 'update'
+  })
+
 export default {
   getRetailers,
   createRetailer,
   updateRetailer,
   getRetailer,
-  destroyRetailer
+  destroyRetailer,
+  uploadImage
 }

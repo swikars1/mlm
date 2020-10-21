@@ -87,7 +87,7 @@ export default {
     },
     handleRetailerChange() {
       this.$store.dispatch('productStore/getProducts', { retailerId: this.customer.retailerId })
-      this.customer = new Customer({ ...this.customer, productId: "" })
+      this.customer = new Customer({ ...this.customer, productId: "", qty: "" })
     }
   },
   computed: {

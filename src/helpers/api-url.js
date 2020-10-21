@@ -34,6 +34,12 @@ const CUSTOMER_PAYMENT_PATH = ({ id }) => ({
   url: `${API_URL_PREFIX}/customers/${id}/add_payment`,
   method: 'POST'
 })
+  
+const IMAGE_UPLOAD_PATH = ({ resourceName, id }) => ({
+  url: `${API_URL_PREFIX}/${resourceName}/${id}/upload_image`,
+  method: 'POST',
+  headers: { 'content-type': 'multipart/form-data' }
+})
 
 export {
   BASE_URL,
@@ -42,5 +48,6 @@ export {
   SHOW_PATH,
   UPDATE_PATH,
   DESTROY_PATH,
-  CUSTOMER_PAYMENT_PATH
+  CUSTOMER_PAYMENT_PATH,
+  IMAGE_UPLOAD_PATH
 }

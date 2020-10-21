@@ -55,6 +55,7 @@
 import { mapGetters } from 'vuex'
 import { Form } from 'view-design'
 import  Retailer  from '@/models/retailer'
+import base64ToBlob from '@/helpers/base64-to-blob'
 
 const RETAILER_STORE_KEY = 'retailerStore'
 
@@ -62,7 +63,9 @@ export default {
   components: { Form },
   data() {
     return {
-      retailer: new Retailer()
+      retailer: new Retailer(),
+      imgSrc: null,
+      retailerImage: null
     }
   },
   props: {
@@ -105,3 +108,11 @@ export default {
   }
 }
 </script>
+<style lang="sass">
+  .image-upload-wrapper
+    img
+      width: 30rem
+  .upload-label
+    height: 4rem
+    line-height: 4rem
+</style>

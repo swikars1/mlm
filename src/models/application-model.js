@@ -1,5 +1,5 @@
 import camelToSnake from '@/helpers/camel-to-snake'
-import { INDEX_PATH, CREATE_PATH, SHOW_PATH, UPDATE_PATH, DESTROY_PATH } from '@/helpers/api-url'
+import { INDEX_PATH, CREATE_PATH, SHOW_PATH, UPDATE_PATH, DESTROY_PATH, IMAGE_UPLOAD_PATH } from '@/helpers/api-url'
 import { v1HTTPService } from '@/helpers/http-service'
 import plural from '@/helpers/resource-name-pluralizer'
 
@@ -42,6 +42,17 @@ class ApplicationModel {
     const serializedData = camelToSnake(this)
     const resourceName = _.snakeCase(plural(className))
     return v1HTTPService({ ...DESTROY_PATH({ resourceName, id: serializedData.id }), serializedData })
+  }
+  uploadImage() {
+    let data = new FormData()
+    for (let key in this) {
+      if (this[key].constructor.name === 'FormData' && this[key].get('avatar')) {
+        data.append(key, this[key].get('avatar'))
+      }
+    }
+    const { className } = this
+    const resourceName = _.snakeCase(plural(className))
+    return v1HTTPService({ ...IMAGE_UPLOAD_PATH({ resourceName, id: this.id }), data })
   }
 }
 
