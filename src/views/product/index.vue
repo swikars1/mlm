@@ -9,8 +9,33 @@
           :loading="productsLoading"
           :deletable="true"
         >
-          
+          <template #default="{ row }">
+            <Tooltip
+              placement="left-start"
+              trigger="hover"
+              content="Add Image"
+            >
+              <Icon
+                class="pointer hover-green-text m-r-1" 
+                type="md-image"
+                size="19"
+                @click="handleAddImage(row)"
+              />
+            </Tooltip>
+          </template>
         </BaseTable>
+        <BaseDrawer
+          v-model="uploadDrawer"
+          title="Add Image"
+        >
+          <ImageUpload
+            resource="product"
+            v-if="uploadDrawer"
+            :close-drawer="handleAddImage"
+            :id="id"
+            @on-upload="(a) => handleCloseImageDrawer(a)"
+          />
+        </BaseDrawer>
         <BaseDrawer
           v-model="showDrawer"
           title="Create Product"
@@ -35,6 +60,7 @@ import { mapGetters } from 'vuex'
 import { PRODUCT_COLUMNS } from '@/helpers/columns'
 import { Icon, Tooltip } from 'view-design'
 import ProductNew from './new'
+import ImageUpload from '@/components/image-upload'
 
 const PRODUCT_STORE_KEY = 'productStore'
 
@@ -43,12 +69,14 @@ export default {
     Icon,
     Tooltip,
     ProductNew,
+    ImageUpload,
   },
   data() {
     return {
       columns: PRODUCT_COLUMNS,
+      uploadDrawer: false,
+      id: null,
       showDrawer: false,
-      paymentDrawer: false
     }
   },
   mounted() {
@@ -58,8 +86,12 @@ export default {
     handleCreate(){
       this.showDrawer = !this.showDrawer
     },
-    handlePayment() {
-      this.paymentDrawer = !this.paymentDrawer
+    handleAddImage(row) {
+      this.id = row && row.id
+      this.uploadDrawer = !this.uploadDrawer
+    },
+    handleCloseImageDrawer(a) {
+      this.uploadDrawer = false
     }
   },
   computed: {

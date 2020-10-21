@@ -44,10 +44,20 @@ const getProduct = (context, params) =>
     params
   })
 
+const uploadImage = (context, params) => 
+  apiDispatcher(context, {
+    resource: new Product(params),
+    storeKey: 'products',
+    loadingKey: 'productSaveLoading',
+    action: 'uploadImage',
+    commitType: 'update'
+  })
+
 export default {
   getProducts,
   createProduct,
   updateProduct,
   getProduct,
-  destroyProduct
+  destroyProduct,
+  uploadImage
 }

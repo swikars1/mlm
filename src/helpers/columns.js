@@ -124,15 +124,15 @@ const PAYMENT_COLUMNS = [
 	},
 	{
 		title: 'Customer',
-		key: 'customerId',
+		key: 'customer',
 	},
 	{
 		title: 'Retailer',
-		key: 'retailerId'
+		key: 'retailer'
 	},
 	{
 		title: 'Product',
-		key: 'productId'
+		key: 'product'
 	},
 ]
 

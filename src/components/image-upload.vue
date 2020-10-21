@@ -5,6 +5,7 @@
     </section>
     <footer>
       <BaseButton
+        :disabled="!image"
         :loading="loading"
         html-type="submit"
         @click="handleUpload"
