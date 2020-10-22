@@ -100,7 +100,7 @@ const PRODUCT_COLUMNS = [
 	},
 	{
 		title: 'Retailer',
-		key: 'retailerId'
+		key: 'retailer'
 	},
 	{
 		title: 'Product Code',

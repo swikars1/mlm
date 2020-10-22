@@ -36,6 +36,7 @@ import { mapGetters } from 'vuex'
 import { RETAILER_TYPE_COLUMNS } from '@/helpers/columns'
 import { Icon, Tooltip } from 'view-design'
 import RetailerTypeNew from './new'
+import RetailerTypeShow from './show' 
 
 const RETAILER_TYPE_STORE_KEY = 'retailerTypeStore'
 
@@ -44,6 +45,7 @@ export default {
     Icon,
     Tooltip,
     RetailerTypeNew,
+    RetailerTypeShow
   },
   data() {
     return {

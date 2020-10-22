@@ -8,8 +8,9 @@
       v-on="$listeners"
       :columns="columns"
       :data="data"
-      style="width:100%;
-    ">
+      style="width:100%;"
+      @on-row-click="handleRowClick"
+    >
 			<template slot-scope="{ row, index }" slot="action">
         <slot :row="row" />
 				<Icon
@@ -42,6 +43,21 @@
         v-on="$listeners"
       />
     </BaseDrawer>
+    <BaseDrawer
+      v-model="resourceShowDrawer"
+      :title="drawerTitle"
+      placement="right"
+      v-on="$listeners"
+    >
+      <component
+        :is="resourceShowComponent"
+        v-if="resourceShowDrawer"
+        v-bind="{
+          id: resource.id
+        }"
+        v-on="$listeners"
+      />
+    </BaseDrawer>
 	</div>
 </template>
 <script>
@@ -57,6 +73,9 @@ export default {
 		return{
 			editDrawer: false,
 			currentModel: false,
+      resourceShowDrawer: false,
+      drawerTitle: '',
+      resource: null
 		}
 	},
 	components: {
@@ -68,7 +87,14 @@ export default {
 		EditRetailerType: () => import('@/views/retailer-type/edit'),
     EditProduct: () => import('@/views/product/edit'),
     EditPayment: () => import('@/views/payment/edit'),
-	},
+    CustomerShow: () => import('@/views/customer/show'),
+    RetailerShow: () => import('@/views/retailer/show'),
+    PaymentShow: () => import('@/views/payment/show'),
+    UserShow: () => import('@/views/user/show'),
+    ProductShow: () => import('@/views/product/show'),
+    RetailerTypeShow: () => import('@/views/retailer-type/show')
+
+  },
 	props: {
 		columns: {
 			type: Array,
@@ -94,6 +120,9 @@ export default {
 	computed: {
     editComponent() {
       return `Edit${this.currentModel}`
+    },
+    resourceShowComponent() {
+      return `${this.currentModel}Show`
     }
 	},
 	methods: {
@@ -109,6 +138,15 @@ export default {
 			this.resource = row
 			this.editDrawer = true
 		},
+    handleRowClick(rowData) {
+      if (typeof this.$listeners['on-row-click'] === 'function') {
+        return this.$emit('on-row-click', rowData)
+      }
+      this.currentModel = rowData.className
+      this.resourceShowDrawer = !this.resourceShowDrawer
+      this.resource = rowData
+      this.drawerTitle = this.resource.name || this.resource.title
+    },
 		handleDelete(row, index) {
 			const { className } = row 
       const currentModel = models[className]

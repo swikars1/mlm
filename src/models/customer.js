@@ -17,7 +17,6 @@ class Customer extends ApplicationModel{
       const serializedData = camelToSnake(this)
       const data = className ? { [_.snakeCase(className)]: serializedData } : serializedData
       const resourceName = _.snakeCase(plural(className))
-      debugger
       return v1HTTPService({ ...CUSTOMER_PAYMENT_PATH({ resourceName, id: serializedData.id }), data })
     }
 }
