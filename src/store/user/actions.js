@@ -44,10 +44,20 @@ const getUser = (context, params) =>
     params
   })
 
+const uploadImage = (context, params) => 
+  apiDispatcher(context, {
+    resource: new User(params),
+    storeKey: 'users',
+    loadingKey: 'userSaveLoading',
+    action: 'uploadImage',
+    commitType: 'update'
+  })
+
 export default {
   getUsers,
   createUser,
   updateUser,
   getUser,
-  destroyUser
+  destroyUser,
+  uploadImage
 }

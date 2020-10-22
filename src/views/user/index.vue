@@ -9,8 +9,33 @@
           :loading="usersLoading"
           :deletable="true"
         >
-          
+          <template #default="{ row }">
+            <Tooltip
+              placement="left-start"
+              trigger="hover"
+              content="Add Image"
+            >
+              <Icon
+                class="pointer hover-green-text m-r-1" 
+                type="md-image"
+                size="19"
+                @click="handleAddImage(row)"
+              />
+            </Tooltip>
+          </template>
         </BaseTable>
+        <BaseDrawer
+          v-model="uploadDrawer"
+          title="Add Image"
+        >
+          <ImageUpload
+            resource="user"
+            v-if="uploadDrawer"
+            :close-drawer="handleAddImage"
+            :id="id"
+            @on-upload="(a) => handleCloseImageDrawer(a)"
+          />
+        </BaseDrawer>
         <BaseDrawer
           v-model="showDrawer"
           title="Create User"
@@ -35,6 +60,8 @@ import { mapGetters } from 'vuex'
 import { USER_COLUMNS } from '@/helpers/columns'
 import { Icon, Tooltip } from 'view-design'
 import UserNew from './new'
+import ImageUpload from '@/components/image-upload'
+
 
 const USER_STORE_KEY = 'userStore'
 
@@ -43,10 +70,13 @@ export default {
     Icon,
     Tooltip,
     UserNew,
+    ImageUpload,
   },
   data() {
     return {
       columns: USER_COLUMNS,
+      uploadDrawer: false,
+      id: null,
       showDrawer: false,
       paymentDrawer: false
     }
@@ -58,8 +88,12 @@ export default {
     handleCreate(){
       this.showDrawer = !this.showDrawer
     },
-    handlePayment() {
-      this.paymentDrawer = !this.paymentDrawer
+    handleAddImage(row) {
+      this.id = row && row.id
+      this.uploadDrawer = !this.uploadDrawer
+    },
+    handleCloseImageDrawer(a) {
+      this.uploadDrawer = false
     }
   },
   computed: {

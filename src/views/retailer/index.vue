@@ -33,7 +33,7 @@
             v-if="uploadDrawer"
             :close-drawer="handleAddImage"
             :id="id"
-            @on-upload="(a) => hanldeCloseImageDrawer(a)"
+            @on-upload="(a) => handleCloseImageDrawer(a)"
           />
         </BaseDrawer>
         <BaseDrawer
@@ -90,7 +90,7 @@ export default {
       this.id = row && row.id
       this.uploadDrawer = !this.uploadDrawer
     },
-    hanldeCloseImageDrawer(a) {
+    handleCloseImageDrawer(a) {
       this.uploadDrawer = false
     },
   },
