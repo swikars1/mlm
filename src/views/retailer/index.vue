@@ -61,6 +61,8 @@ import { RETAILER_COLUMNS } from '@/helpers/columns'
 import { Icon, Tooltip } from 'view-design'
 import RetailerNew from './new'
 import ImageUpload from '@/components/image-upload'
+import RetailerShow from './show'
+
 
 const RETAILER_STORE_KEY = 'retailerStore'
 
@@ -69,7 +71,8 @@ export default {
     Icon,
     Tooltip,
     RetailerNew,
-    ImageUpload
+    ImageUpload,
+    RetailerShow
   },
   data() {
     return {

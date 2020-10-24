@@ -61,6 +61,7 @@ import { PRODUCT_COLUMNS } from '@/helpers/columns'
 import { Icon, Tooltip } from 'view-design'
 import ProductNew from './new'
 import ImageUpload from '@/components/image-upload'
+import ProductShow from './show' 
 
 const PRODUCT_STORE_KEY = 'productStore'
 
@@ -70,6 +71,7 @@ export default {
     Tooltip,
     ProductNew,
     ImageUpload,
+    ProductShow
   },
   data() {
     return {

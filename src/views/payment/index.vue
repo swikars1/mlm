@@ -35,6 +35,8 @@ import { mapGetters } from 'vuex'
 import { PAYMENT_COLUMNS } from '@/helpers/columns'
 import { Icon, Tooltip } from 'view-design'
 import PaymentNew from './new'
+import PaymentShow from './show'
+
 
 const PAYMENT_STORE_KEY = 'paymentStore'
 
@@ -43,6 +45,7 @@ export default {
     Icon,
     Tooltip,
     PaymentNew,
+    PaymentShow
   },
   data() {
     return {

@@ -8,7 +8,7 @@
           :data="customers"
           :loading="customersLoading"
           :deletable="false"
-        >
+        > 
           <template #default="{ row }">
             <Tooltip
               placement="left-start"
@@ -24,6 +24,7 @@
             </Tooltip>
           </template>
         </BaseTable>
+
         <BaseDrawer
           v-model="paymentDrawer"
           title="Add Purchase"
@@ -60,6 +61,7 @@ import { Icon, Tooltip } from 'view-design'
 import CustomerNew from './new'
 import PaymentForm from './payment-form'
 import Customer from '@/models'
+import CustomerShow from './show.vue'
 
 const CUSTOMER_STORE_KEY = 'customerStore'
 
@@ -68,7 +70,8 @@ export default {
     Icon,
     Tooltip,
     CustomerNew,
-    PaymentForm
+    PaymentForm,
+    CustomerShow
   },
   data() {
     return {
@@ -88,7 +91,7 @@ export default {
     handlePayment(row) {
       this.id = row && row.id
       this.paymentDrawer = !this.paymentDrawer
-    }
+    },
   },
   computed: {
     ...mapGetters({
