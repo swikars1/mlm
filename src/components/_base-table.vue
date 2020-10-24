@@ -18,14 +18,14 @@
 					class="pointer"
 					type="ios-create-outline" 
 					size="19" 
-					@click="handleEdit(row, index)" 
+					@click.stop="handleEdit(row, index)" 
 				/>
 				<Icon
           v-if="deletable"
 					class="m-l-1 pointer"
 					type="md-trash"
 					size="18" 
-					@click="handleDelete(row, index)" 
+					@click.stop="handleDelete(row, index)" 
 				/>
 			</template>
 		</Table>
@@ -87,13 +87,13 @@ export default {
 		EditRetailerType: () => import('@/views/retailer-type/edit'),
     EditProduct: () => import('@/views/product/edit'),
     EditPayment: () => import('@/views/payment/edit'),
+    EditCategory: () => import('@/views/category/edit'),
     CustomerShow: () => import('@/views/customer/show'),
     RetailerShow: () => import('@/views/retailer/show'),
     PaymentShow: () => import('@/views/payment/show'),
     UserShow: () => import('@/views/user/show'),
     ProductShow: () => import('@/views/product/show'),
-    RetailerTypeShow: () => import('@/views/retailer-type/show')
-
+    RetailerTypeShow: () => import('@/views/retailer-type/show'),
   },
 	props: {
 		columns: {
@@ -164,6 +164,7 @@ export default {
           cancelText: 'cancel',
           closable: true,
           onOk: () => {
+            debugger
             const storeKey = `${storePrefix}Store/destroy${className}`
             this.$store
               .dispatch(storeKey, {

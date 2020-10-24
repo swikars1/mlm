@@ -4,6 +4,7 @@ import Retailer from './retailer'
 import RetailerType from './retailer-type'
 import Product from './product'
 import User from './user'
+import Category from './category'
 
 export {
   Customer,
@@ -12,4 +13,5 @@ export {
   RetailerType,
   Product,
   User,
+  Category
 }
