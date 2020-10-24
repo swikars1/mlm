@@ -1,12 +1,12 @@
 <template>
     <div class="table-index-page">
         <header>
-          <h1>RetailerTypes</h1>
+          <h1>Categorys</h1>          
         </header>
          <BaseTable
           :columns="columns"
-          :data="retailerTypes"
-          :loading="retailerTypesLoading"
+          :data="categories"
+          :loading="categoriesLoading"
           :deletable="true"
           :editable="true"
           @on-row-click="() => {}"
@@ -15,16 +15,16 @@
         </BaseTable>
         <BaseDrawer
           v-model="showDrawer"
-          title="Create RetailerType"
+          title="Create Category"
         >
-          <RetailerTypeNew
+          <CategoryNew
             v-if="showDrawer"
             :close-drawer="handleCreate"
           />
         </BaseDrawer>
       <footer class="table-footer">
         <BaseButton class="m-l-1" @click="handleCreate">
-          Create RetailerType
+          Create Category
         </BaseButton>
       </footer>
     </div>
@@ -34,28 +34,28 @@
 <script>
  
 import { mapGetters } from 'vuex'
-import { RETAILER_TYPE_COLUMNS } from '@/helpers/columns'
+import { CATEGORY_COLUMNS } from '@/helpers/columns'
 import { Icon, Tooltip } from 'view-design'
-import RetailerTypeNew from './new'
-import RetailerTypeShow from './show' 
+import CategoryNew from './new'
+import CategoryShow from './show' 
 
-const RETAILER_TYPE_STORE_KEY = 'retailerTypeStore'
+const CATEGORY_STORE_KEY = 'categoryStore'
 
 export default {
   components: {
     Icon,
     Tooltip,
-    RetailerTypeNew,
-    RetailerTypeShow
+    CategoryNew,
+    CategoryShow
   },
   data() {
     return {
-      columns: RETAILER_TYPE_COLUMNS,
+      columns: CATEGORY_COLUMNS,
       showDrawer: false,
     }
   },
   mounted() {
-    this.$store.dispatch(`${RETAILER_TYPE_STORE_KEY}/getRetailerTypes`)
+    this.$store.dispatch(`${CATEGORY_STORE_KEY}/getCategories`)
   },
   methods: {
     handleCreate(){
@@ -65,8 +65,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      retailerTypes: `${RETAILER_TYPE_STORE_KEY}/retailerTypes`,
-      retailerTypesLoading: `${RETAILER_TYPE_STORE_KEY}/retailerTypesLoading`
+      categories: `${CATEGORY_STORE_KEY}/categories`,
+      categoriesLoading: `${CATEGORY_STORE_KEY}/categoriesLoading`
     })
   }
 }

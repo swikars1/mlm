@@ -7,6 +7,7 @@ import retailerStore from './retailer'
 import paymentStore from './payment'
 import retailerTypeStore from './retailer-type'
 import userStore from './user'
+import categoryStore from './category'
 
 
 
@@ -21,6 +22,7 @@ const modules = {
   paymentStore,
   retailerTypeStore,
   userStore,
+  categoryStore
 
 };
 

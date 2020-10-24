@@ -9,6 +9,8 @@ import RetailerTypeIndex from '@/views/retailer-type/index'
 import ProductIndex from '@/views/product/index'
 import PaymentIndex from '@/views/payment/index'
 import UserIndex from '@/views/user/index'
+import DashboardIndex from '@/views/dashboard/index'
+import CategoryIndex from '@/views/category/index'
 
 Vue.use(VueRouter)
 
@@ -19,6 +21,16 @@ const routes = [
     meta: {
       noAuth: true
     }
+  },
+  {
+    path: '/dashboard',
+    component: AppLayout,
+    children: [
+      {
+        path: '',
+        component: DashboardIndex
+      }
+    ]
   },
   {
     path: '/customers',
@@ -47,6 +59,16 @@ const routes = [
       {
         path: '',
         component: RetailerTypeIndex
+      }
+    ]
+  },
+  {
+    path: '/category',
+    component: AppLayout,
+    children: [
+      {
+        path: '',
+        component: CategoryIndex
       }
     ]
   },

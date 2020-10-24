@@ -38,6 +38,11 @@ export default {
     return {
       menus: [
         {
+          title: 'Dashboard',
+          route: '/dashboard',
+          icon: 'ios-speedometer'
+        },
+        {
           title: 'Customers',
           route: '/customers',
           icon: 'ios-people'
@@ -56,6 +61,11 @@ export default {
           title: 'Payments',
           route: '/payments',
           icon: 'ios-card'
+        },
+        {
+          title: 'Product Categories',
+          route: '/category',
+          icon: 'ios-cart'
         },
         {
           title: 'Products',

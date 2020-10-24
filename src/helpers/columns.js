@@ -136,6 +136,18 @@ const PAYMENT_COLUMNS = [
 	},
 ]
 
+const CATEGORY_COLUMNS = [
+	{
+	  title: 'Name',
+	  key: 'name',
+	},
+	{
+		title: 'Action',
+		slot: 'action',
+		align: 'right'
+	}
+]
+
 export {
 	CUSTOMER_COLUMNS,
 	RETAILER_COLUMNS,
@@ -143,4 +155,5 @@ export {
 	PRODUCT_COLUMNS,
 	PAYMENT_COLUMNS,
 	USER_COLUMNS,
+	CATEGORY_COLUMNS,
 }
