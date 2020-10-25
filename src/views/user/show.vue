@@ -1,6 +1,6 @@
 <template>
   <div class="show-page">
-    {{ user }}
+    <img :src="user.imageUrl">
     <List>
       <ListItem>
         <ListItemMeta title="Name" :description="user.name"/>
@@ -12,16 +12,7 @@
         <ListItemMeta title="Phone No." :description="user.phoneNo"/>
       </ListItem>
       <ListItem>
-        <ListItemMeta title="Address" :description="user.address"/>
-      </ListItem>
-      <ListItem>
-        <ListItemMeta title="Birth Date" :description="user.birthday"/>
-      </ListItem>
-      <ListItem>
-        <ListItemMeta title="Expenditure" :description="user.expenditure"/>
-      </ListItem>
-      <ListItem>
-        <ListItemMeta title="Referal Code" :description="user.referCode"/>
+        <ListItemMeta title="Gender" :description="user.gender"/>
       </ListItem>
     </List> 
   </div>

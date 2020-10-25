@@ -1,5 +1,7 @@
 <template>
   <div class="show-page">
+    {{ product }}
+    <img  class="drawer-image" :src="product.imageUrl">
     <List>
       <ListItem>
         <ListItemMeta title="Name" :description="product.name"/>
@@ -9,6 +11,9 @@
       </ListItem>
       <ListItem>
         <ListItemMeta title="Description" :description="product.description"/>
+      </ListItem>
+      <ListItem v-for="(item, index) in product.category" :key="item.id">
+        <ListItemMeta :title="index===0 ? `Category` : '' "  :description="item.name"/>
       </ListItem>
       <ListItem>
         <ListItemMeta title="Retailer" :description="product.retailer"/>
@@ -57,8 +62,3 @@ export default {
 }
 </script>
 
-<style scoped>
-  .show-page{
-    margin: 2rem;
-  }
-</style>

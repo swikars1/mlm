@@ -29,7 +29,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { Form } from 'view-design'
-import  Category  from '@/models/retailer-type'
+import  Category  from '@/models/category'
 
 const CATEGORY_STORE_KEY = 'categoryStore'
 
