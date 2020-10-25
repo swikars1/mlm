@@ -1,5 +1,6 @@
 <template>
   <div class="show-page">
+    <img class="drawer-image" :src="customer.imageUrl">
     <List>
       <ListItem>
         <ListItemMeta title="Name" :description="customer.name"/> 
@@ -65,5 +66,11 @@ export default {
 <style scoped>
   .show-page{
     margin: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .drawer-image{
+    width: 15rem;
+    align-self: center;
   }
 </style>

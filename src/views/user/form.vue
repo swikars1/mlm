@@ -14,6 +14,12 @@
           placeholder="Name" 
         />
         <BaseInput 
+          v-model="user.email"
+          type="text" 
+          label="Email" 
+          placeholder="Email" 
+        />
+        <BaseInput 
           v-model="user.phoneNo" 
           type="text" 
           label="Contact Number" 
@@ -26,17 +32,10 @@
           placeholder="Address" 
         />
         <BaseInput 
-          v-model="user.panNumber"
+          v-model="user.gender"
           type="text" 
-          label="Pan Number" 
-          placeholder="Pan Number" 
-        />
-        <BaseRemoteSelect 
-          placeholder="Select User"
-          v-model="user.userId"
-          v-if="creating"
-          resource="user"
-          clearable
+          label="Gender" 
+          placeholder="Gender" 
         />
       </section>
       <footer>

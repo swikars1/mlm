@@ -19,7 +19,7 @@
                 class="pointer hover-green-text m-r-1" 
                 type="md-image"
                 size="19"
-                @click="handleAddImage(row)"
+                @click.stop="handleAddImage(row)"
               />
             </Tooltip>
           </template>

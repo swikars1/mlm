@@ -31,6 +31,15 @@
           label="Product Code" 
           placeholder="Product Code" 
         />
+        <BaseSelect 
+          :items="categories"
+          placeholder="Select Category"
+          v-model="product.categoryIds"
+          remote
+          filterable
+          multiple
+          clearable
+        />
         <BaseRemoteSelect 
           placeholder="Select Retailer"
           v-model="product.retailerId"
@@ -75,6 +84,7 @@ export default {
     }
   },
   mounted() {
+    this.$store.dispatch(`categoryStore/getCategories`)
   },
   methods: {
     async handleFormSubmit() {
@@ -86,6 +96,7 @@ export default {
     ...mapGetters({
       products: `productStore/products`,
       productSaveLoading: `productStore/productSaveLoading`,
+      categories: `categoryStore/categories`
     }),
     creating() {
       return this.currentAction === 'create'

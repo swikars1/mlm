@@ -87,6 +87,7 @@ export default {
 		EditRetailerType: () => import('@/views/retailer-type/edit'),
     EditProduct: () => import('@/views/product/edit'),
     EditPayment: () => import('@/views/payment/edit'),
+    EditUser: () => import('@/views/user/edit'), 
     EditCategory: () => import('@/views/category/edit'),
     CustomerShow: () => import('@/views/customer/show'),
     RetailerShow: () => import('@/views/retailer/show'),
