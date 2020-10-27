@@ -25,7 +25,7 @@
             <div class="icon-wrapper category-icon">
               <Icon type="md-cart" size="28"/>
             </div>
-     dom-id       <div class="text-count">
+            <div class="text-count">
               <span class="actual-count">18</span>
               <span class="count-label">Total Categories</span>
             </div>
@@ -40,7 +40,14 @@
             </div>
           </div>
         </div>
-        <div id="chart-dom"></div>
+        <div class="dashboard-chart-wrapper">
+          <BaseEchart :pie-data="[
+                {name: 'A', value: 1212},
+                {name: 'B', value: 2323},
+                {name: 'C', value: 1919}
+            ]"/>
+          
+        </div>
       </div>
   </div>
 
@@ -48,15 +55,27 @@
 </template>
 
 <script>
-import * as echarts from 'echarts'
 import { Icon } from 'view-design'
 
 export default {
   components: {
     Icon
   },
-
-}  
+  data() {
+    return {
+      pie: {
+        series: {
+          type: 'pie',
+          data: [
+              {name: 'A', value: 1212},
+              {name: 'B', value: 2323},
+              {name: 'C', value: 1919}
+          ]
+        }
+      }
+    }
+  }
+}
 </script>
 <style lang="sass" scoped>
   .dashboard-wrapper
@@ -69,18 +88,20 @@ export default {
       margin-top: 5rem
       .count-wrapper
         display: flex
-        justify-content: space-around
+        justify-content: space-between
+        padding: 0 4rem
+        flex-wrap: wrap
         .each-count
           display: flex
           place-content: center
           place-items: center
-          justify-content: space-around
-          height: 13rem
-          width: 26rem
+          height: 15rem
+          width: 28rem
           background: white
           border-radius: 8px
           padding: 1rem
           box-shadow: 0px 0px 6px 0px rgba(207, 207, 207, 75%)
+          margin-top: 2rem
           .icon-wrapper
             height: 5rem
             width: 5rem
@@ -107,7 +128,7 @@ export default {
           .text-count
             display: flex
             flex-direction: column
-            margin-left: 2.7rem
+            margin-left: 3.4rem
             .actual-count
               font-weight: 700
               color: black
