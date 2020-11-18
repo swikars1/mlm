@@ -46,6 +46,9 @@
           />
         </BaseDrawer>
       <footer class="table-footer">
+        <Pagination
+          resource="product"
+        />
         <BaseButton class="m-l-1" @click="handleCreate">
           Create Product
         </BaseButton>
@@ -62,16 +65,20 @@ import { Icon, Tooltip } from 'view-design'
 import ProductNew from './new'
 import ImageUpload from '@/components/image-upload'
 import ProductShow from './show' 
+import Pagination, { PaginationMixin } from '@/components/pagination'
+
 
 const PRODUCT_STORE_KEY = 'productStore'
 
 export default {
+  mixins: [PaginationMixin],
   components: {
     Icon,
     Tooltip,
     ProductNew,
     ImageUpload,
-    ProductShow
+    ProductShow,
+    Pagination
   },
   data() {
     return {

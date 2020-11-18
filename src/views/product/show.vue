@@ -1,6 +1,5 @@
 <template>
   <div class="show-page">
-    {{ product }}
     <img  class="drawer-image" :src="product.imageUrl">
     <List>
       <ListItem>

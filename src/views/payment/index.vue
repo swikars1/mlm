@@ -21,6 +21,9 @@
           />
         </BaseDrawer>
       <footer class="table-footer">
+        <Pagination
+          resource="payment"
+        />
         <BaseButton class="m-l-1" @click="handleCreate">
           Create Payment
         </BaseButton>
@@ -36,16 +39,20 @@ import { PAYMENT_COLUMNS } from '@/helpers/columns'
 import { Icon, Tooltip } from 'view-design'
 import PaymentNew from './new'
 import PaymentShow from './show'
+import Pagination, { PaginationMixin } from '@/components/pagination'
+
 
 
 const PAYMENT_STORE_KEY = 'paymentStore'
 
 export default {
+  mixins: [PaginationMixin],
   components: {
     Icon,
     Tooltip,
     PaymentNew,
-    PaymentShow
+    PaymentShow,
+    Pagination
   },
   data() {
     return {

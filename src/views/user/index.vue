@@ -46,6 +46,9 @@
           />
         </BaseDrawer>
       <footer class="table-footer">
+        <Pagination
+          resource="user"
+        />
         <BaseButton class="m-l-1" @click="handleCreate">
           Create User
         </BaseButton>
@@ -61,16 +64,20 @@ import { USER_COLUMNS } from '@/helpers/columns'
 import { Icon, Tooltip } from 'view-design'
 import UserNew from './new'
 import ImageUpload from '@/components/image-upload'
+import Pagination, { PaginationMixin } from '@/components/pagination'
+
 
 
 const USER_STORE_KEY = 'userStore'
 
 export default {
+  mixins: [PaginationMixin],
   components: {
     Icon,
     Tooltip,
     UserNew,
     ImageUpload,
+    Pagination
   },
   data() {
     return {

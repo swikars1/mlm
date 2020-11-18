@@ -1,7 +1,7 @@
 <template>
     <div class="table-index-page">
         <header>
-          <h1>Categorys</h1>          
+          <h1>Categories</h1>          
         </header>
          <BaseTable
           :columns="columns"
@@ -23,6 +23,9 @@
           />
         </BaseDrawer>
       <footer class="table-footer">
+        <Pagination
+          resource="category"
+        />
         <BaseButton class="m-l-1" @click="handleCreate">
           Create Category
         </BaseButton>
@@ -38,15 +41,19 @@ import { CATEGORY_COLUMNS } from '@/helpers/columns'
 import { Icon, Tooltip } from 'view-design'
 import CategoryNew from './new'
 import CategoryShow from './show' 
+import Pagination, { PaginationMixin } from '@/components/pagination'
+
 
 const CATEGORY_STORE_KEY = 'categoryStore'
 
 export default {
+  mixins: [PaginationMixin],
   components: {
     Icon,
     Tooltip,
     CategoryNew,
-    CategoryShow
+    CategoryShow,
+    Pagination
   },
   data() {
     return {
