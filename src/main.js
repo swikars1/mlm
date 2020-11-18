@@ -6,9 +6,16 @@ import './plugins/iview.js'
 import _ from 'lodash'
 import '@/assets/stylesheets/app.sass'
 import '@/components/_globaling'
+import axios from 'axios'
 
 Vue.config.productionTip = false
 Vue.prototype._ = _
+
+const token = localStorage.getItem('user-token')
+
+if (token) {
+  axios.defaults.headers.common['Authorization'] = token
+}
 
 new Vue({
   router,

@@ -2,7 +2,7 @@
  <div>
    <Form class="login" >
      <h1>Sign in</h1>
-     <Input required v-model="username" type="text" placeholder="Snoopy"/>
+     <Input required v-model="email" type="email" placeholder="Snoopy"/>
      <Input required v-model="password" type="password" placeholder="Password"/>
      <hr/>
      <Button @click="login">Login</button>
@@ -13,14 +13,22 @@
 import { Form, Input, Button } from 'view-design'
 
 export default {
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
   components: {
     Form,
     Input,
     Button
   },
   methods: {
-    login() {
-      this.$router.push('/')
+    async login() {
+      const { email, password } = this
+      await this.$store.dispatch('authStore/authRequest', { email, password })
+      this.$router.push('/dashboard')
     }
   }
 }

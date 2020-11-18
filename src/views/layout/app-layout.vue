@@ -19,6 +19,10 @@
             {{ item.title }}
           </span>
         </MenuItem>
+        <div class="last-menuitem" @click="handleLogout">
+          <Icon type="ios-log-out" size="27" />
+          <span>Logout</span>
+        </div>
       </Menu>
     </Sider>
     <Content>
@@ -40,7 +44,7 @@ export default {
         {
           title: 'Dashboard',
           route: '/dashboard',
-          icon: 'ios-speedometer'
+          icon: 'md-analytics'
         },
         {
           title: 'Customers',
@@ -93,6 +97,11 @@ export default {
 
   },
   methods: {
+    handleLogout() {
+      this.$store.dispatch('authStore/authLogout').then(() => {
+        this.$router.push('/login')
+      })
+    }
   },
   mounted() {
   }
@@ -113,7 +122,7 @@ export default {
   .menu-item
     height: 100%
     width: $menu-width !important
-    background: linear-gradient(45deg, #94989c, white)
+    background: linear-gradient(45deg, #dddddd, white)
     span
       display: inline-block
       overflow: hidden
@@ -123,4 +132,13 @@ export default {
       vertical-align: bottom
       margin-left: 1rem
       transition: width .2s ease .2s
+  .last-menuitem
+    display: flex
+    position: absolute
+    bottom: 0
+    padding: 14px 24px
+    cursor: pointer
+    width: 100%
+    place-items: center
+    border-top: 2px solid #cccaca
 </style>

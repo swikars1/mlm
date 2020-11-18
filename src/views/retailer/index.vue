@@ -63,7 +63,6 @@ import RetailerNew from './new'
 import ImageUpload from '@/components/image-upload'
 import RetailerShow from './show'
 
-
 const RETAILER_STORE_KEY = 'retailerStore'
 
 export default {
