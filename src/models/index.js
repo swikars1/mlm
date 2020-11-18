@@ -6,6 +6,9 @@ import Product from './product'
 import User from './user'
 import Category from './category'
 
+
+
+
 export {
   Customer,
   Payment,

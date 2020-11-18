@@ -8,10 +8,7 @@ import paymentStore from './payment'
 import retailerTypeStore from './retailer-type'
 import userStore from './user'
 import categoryStore from './category'
-
-
-
-
+import authStore from './auth'
 
 Vue.use(Vuex)
 
@@ -22,8 +19,8 @@ const modules = {
   paymentStore,
   retailerTypeStore,
   userStore,
-  categoryStore
-
+  categoryStore,
+  authStore
 };
 
 const store = new Vuex.Store({

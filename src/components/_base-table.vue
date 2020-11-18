@@ -165,7 +165,6 @@ export default {
           cancelText: 'cancel',
           closable: true,
           onOk: () => {
-            debugger
             const storeKey = `${storePrefix}Store/destroy${className}`
             this.$store
               .dispatch(storeKey, {

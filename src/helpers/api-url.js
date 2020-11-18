@@ -1,7 +1,12 @@
 // const BASE_URL = 'https://mlm-pyramid.herokuapp.com'
 const BASE_URL = 'http://localhost:3000'
 
-const API_URL_PREFIX = '/api'
+const API_URL_PREFIX = '/api/v1'
+
+const LOGIN_PATH = () => ({
+  url: '/api/v1/auth/sign_in',
+  method: 'POST'
+})
 
 const INDEX_PATH = ({ resourceName, params }) => ({
   url: `${API_URL_PREFIX}/${resourceName}`,
@@ -43,11 +48,12 @@ const IMAGE_UPLOAD_PATH = ({ resourceName, id }) => ({
 
 export {
   BASE_URL,
+  LOGIN_PATH,
   INDEX_PATH,
   CREATE_PATH,
   SHOW_PATH,
   UPDATE_PATH,
   DESTROY_PATH,
   CUSTOMER_PAYMENT_PATH,
-  IMAGE_UPLOAD_PATH
+  IMAGE_UPLOAD_PATH,
 }

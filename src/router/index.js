@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import store from '@/store'
 import AppLayout from '@/views/layout/app-layout'
 import LoginIndex from '@/views/auth/login-index'
 import CustomerIndex from '@/views/customer/index'
@@ -16,10 +17,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     component: LoginIndex,
     meta: {
-      noAuth: true
+      requiresAuth: false
     }
   },
   {
@@ -30,7 +31,10 @@ const routes = [
         path: '',
         component: DashboardIndex
       }
-    ]
+    ],
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/customers',
@@ -40,7 +44,10 @@ const routes = [
         path: '',
         component: CustomerIndex
       }
-    ]
+    ],
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/retailers',
@@ -50,7 +57,10 @@ const routes = [
         path: '',
         component: RetailerIndex
       }
-    ]
+    ],
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/retailer-type',
@@ -60,7 +70,10 @@ const routes = [
         path: '',
         component: RetailerTypeIndex
       }
-    ]
+    ],
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/category',
@@ -70,7 +83,10 @@ const routes = [
         path: '',
         component: CategoryIndex
       }
-    ]
+    ],
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/products',
@@ -90,7 +106,10 @@ const routes = [
         path: '',
         component: PaymentIndex
       }
-    ]
+    ],
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/users',
@@ -100,13 +119,29 @@ const routes = [
         path: '',
         component: UserIndex
       }
-    ]
+    ],
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 
 const router = new VueRouter({
   mode: 'history',
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  window.previousUrl = from.path
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters['authStore/isAuthenticated']) {
+      next()
+      return
+    }
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router

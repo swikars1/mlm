@@ -41,17 +41,20 @@
           </div>
         </div>
         <div class="dashboard-chart-wrapper">
-          <BaseEchart :pie-data="[
-                {name: 'A', value: 1212},
-                {name: 'B', value: 2323},
-                {name: 'C', value: 1919}
-            ]"/>
-          
+          <BaseEchart
+            type="pie"
+            title="Male/Female Customer"
+            :pie-data="pieData"
+          />
+          <BaseEchart
+            type="bar"
+            title="Male/Female Customer"
+            :x-axis="['a','b','c','d','e','f','g']"
+            :legend="['Male/Female']"
+            :bar-data="barData" />
         </div>
       </div>
   </div>
-
-
 </template>
 
 <script>
@@ -72,7 +75,14 @@ export default {
               {name: 'C', value: 1919}
           ]
         }
-      }
+      },
+      pieData: [
+          { name: 'A', value: 1212 },
+          { name: 'B', value: 2323 },
+          { name: 'C', value: 1919 }],
+      barData: [
+        3,7,1,11,4,15,2
+      ]
     }
   }
 }
@@ -86,6 +96,7 @@ export default {
       text-align: center
     .dashboard-content
       margin-top: 5rem
+      margin-top: 1rem
       .count-wrapper
         display: flex
         justify-content: space-between
@@ -103,8 +114,8 @@ export default {
           box-shadow: 0px 0px 6px 0px rgba(207, 207, 207, 75%)
           margin-top: 2rem
           .icon-wrapper
-            height: 5rem
-            width: 5rem
+            height: 7rem
+            width: 7rem
             display: flex
             place-content: center
             align-items: center

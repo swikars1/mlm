@@ -1,9 +1,10 @@
 <template>
   <div class="echarts-wrapper">
-    <v-chart v-bind="$attrs" v-on="$listeners" :options="pieOptions" />
+    <v-chart v-bind="$attrs" v-on="$listeners" :options="chartOptions[type]" />
   </div>
 </template>
 <script>
+import ChartBuilder from '@/models/chart-builder'
 import ECharts from 'vue-echarts'
 
 import 'echarts/lib/chart/pie'
@@ -18,24 +19,42 @@ export default {
     pieData: {
       type: Array,
       default: () => []
+    },
+    type: {
+      type: String,
+      required: true
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    legend: {
+      type: Array,
+      default: () => []
+    },
+    pieData: {
+      type: Array,
+      default: () => []
+    },
+    barData: {
+      type: Array,
+      default: () => []
+    },
+    xAxis: {
+      type: Array,
+      default: () => []
     }
   },
   components: {
     'v-chart': ECharts
   },
   computed: {
-    pieOptions() {
+    chartOptions() {
+      let pieChart = new ChartBuilder({ pieData: this.pieData, title: this.title })
+      let barChart = new ChartBuilder({ barData: this.barData, title: this.title, xAxis: this.xAxis })
       return {
-        backgroundColor: '#ffffff',
-        series : [
-          {
-            name: 'Pie Chart',
-            type: 'pie',
-            radius: '75%',
-            data: this.pieData,
-            roseType: 'angle'
-          }
-        ]
+        pie: pieChart.buildPie(),
+        bar: barChart.buildBar()
       }
     }
   }
@@ -44,6 +63,7 @@ export default {
 <style lang="sass">
 .echarts-wrapper
   padding: 4rem
+  padding: 2.5rem 4rem
   canvas
     box-shadow: 0px 0px 6px 0px rgba(207, 207, 207, 75%)
     border-radius: 8px
