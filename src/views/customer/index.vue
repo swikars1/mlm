@@ -45,6 +45,9 @@
           />
         </BaseDrawer>
       <footer class="table-footer">
+        <Pagination
+          resource="customer"
+        />
         <BaseButton class="m-l-1" @click="handleCreate">
           Create Customer
         </BaseButton>
@@ -62,16 +65,19 @@ import CustomerNew from './new'
 import PaymentForm from './payment-form'
 import Customer from '@/models'
 import CustomerShow from './show.vue'
+import Pagination, { PaginationMixin } from '@/components/pagination'
 
 const CUSTOMER_STORE_KEY = 'customerStore'
 
 export default {
+  mixins: [PaginationMixin],
   components: {
     Icon,
     Tooltip,
     CustomerNew,
     PaymentForm,
-    CustomerShow
+    CustomerShow,
+    Pagination
   },
   data() {
     return {
