@@ -1,7 +1,13 @@
 <template>
     <div class="table-index-page">
         <header>
-          <h1>Categories</h1>          
+          <h1>Categories</h1>  
+          <Form>
+            <BaseSearch
+              placeholder="Search Category"
+              resource="category"
+            />
+          </Form>        
         </header>
          <BaseTable
           :columns="columns"
@@ -38,7 +44,7 @@
  
 import { mapGetters } from 'vuex'
 import { CATEGORY_COLUMNS } from '@/helpers/columns'
-import { Icon, Tooltip } from 'view-design'
+import { Icon, Tooltip, Form } from 'view-design'
 import CategoryNew from './new'
 import CategoryShow from './show' 
 import Pagination, { PaginationMixin } from '@/components/pagination'
@@ -53,7 +59,8 @@ export default {
     Tooltip,
     CategoryNew,
     CategoryShow,
-    Pagination
+    Pagination,
+    Form
   },
   data() {
     return {

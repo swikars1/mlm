@@ -2,6 +2,12 @@
     <div class="table-index-page">
         <header>
           <h1>RetailerTypes</h1>
+          <Form>
+            <BaseSearch
+              placeholder="Search Retailer Type"
+              resource="retailerType"
+            />
+          </Form>
         </header>
          <BaseTable
           :columns="columns"
@@ -38,7 +44,7 @@
  
 import { mapGetters } from 'vuex'
 import { RETAILER_TYPE_COLUMNS } from '@/helpers/columns'
-import { Icon, Tooltip } from 'view-design'
+import { Icon, Tooltip, Form } from 'view-design'
 import RetailerTypeNew from './new'
 import RetailerTypeShow from './show' 
 import Pagination, { PaginationMixin } from '@/components/pagination'
@@ -53,7 +59,8 @@ export default {
     Tooltip,
     RetailerTypeNew,
     RetailerTypeShow,
-    Pagination
+    Pagination,
+    Form
   },
   data() {
     return {
