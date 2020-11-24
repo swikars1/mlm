@@ -2,6 +2,12 @@
     <div class="table-index-page">
         <header>
           <h1>Payments</h1>
+          <Form>
+            <BaseSearch
+              placeholder="Search Payment"
+              resource="payment"
+            />
+          </Form>
         </header>
          <BaseTable
           :columns="columns"
@@ -36,7 +42,7 @@
  
 import { mapGetters } from 'vuex'
 import { PAYMENT_COLUMNS } from '@/helpers/columns'
-import { Icon, Tooltip } from 'view-design'
+import { Icon, Tooltip, Form } from 'view-design'
 import PaymentNew from './new'
 import PaymentShow from './show'
 import Pagination, { PaginationMixin } from '@/components/pagination'
@@ -52,7 +58,8 @@ export default {
     Tooltip,
     PaymentNew,
     PaymentShow,
-    Pagination
+    Pagination,
+    Form
   },
   data() {
     return {

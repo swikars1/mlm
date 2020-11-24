@@ -2,6 +2,12 @@
     <div class="table-index-page">
         <header>
           <h1>Customers</h1>
+          <Form>
+            <BaseSearch
+              placeholder="Search Customer"
+              resource="customer"
+            />
+          </Form>
         </header>
          <BaseTable
           :columns="columns"
@@ -19,7 +25,7 @@
                 class="pointer hover-green-text m-r-1" 
                 type="md-add-circle"
                 size="20"
-                @click="handlePayment(row)"
+                @click.stop="handlePayment(row)"
               />
             </Tooltip>
           </template>
@@ -60,7 +66,7 @@
  
 import { mapGetters } from 'vuex'
 import { CUSTOMER_COLUMNS } from '@/helpers/columns'
-import { Icon, Tooltip } from 'view-design'
+import { Icon, Tooltip, Form } from 'view-design'
 import CustomerNew from './new'
 import PaymentForm from './payment-form'
 import Customer from '@/models'
@@ -77,7 +83,8 @@ export default {
     CustomerNew,
     PaymentForm,
     CustomerShow,
-    Pagination
+    Pagination,
+    Form  
   },
   data() {
     return {

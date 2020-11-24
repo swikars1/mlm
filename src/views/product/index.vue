@@ -2,6 +2,12 @@
     <div class="table-index-page">
         <header>
           <h1>Products</h1>
+          <Form>
+            <BaseSearch
+              placeholder="Search Product"
+              resource="product"
+            />
+          </Form>
         </header>
          <BaseTable
           :columns="columns"
@@ -61,7 +67,7 @@
  
 import { mapGetters } from 'vuex'
 import { PRODUCT_COLUMNS } from '@/helpers/columns'
-import { Icon, Tooltip } from 'view-design'
+import { Icon, Tooltip, Form } from 'view-design'
 import ProductNew from './new'
 import ImageUpload from '@/components/image-upload'
 import ProductShow from './show' 
@@ -78,7 +84,8 @@ export default {
     ProductNew,
     ImageUpload,
     ProductShow,
-    Pagination
+    Pagination,
+    Form
   },
   data() {
     return {

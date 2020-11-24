@@ -43,10 +43,13 @@ body
     margin-bottom: $footer-height
   header
     position: fixed
+    display: flex
+    justify-content: space-between
     top: 0
     height: $header-height
     background: white
-    width: 100%
+    box-shadow: inset 0px -16px 65px -64px rgba(0,0,0,0.75)
+    width: calc(100% - #{$menu-width})
     padding: 1rem
     z-index: 99
     h1
