@@ -29,6 +29,6 @@ deploy_staging:
     name: staging
     url: bhakaritraders.com
   script:
-    - sudo ssh root@206.189.139.157 - bhakari@traders "cd /var/www/mlm-vue && git checkout master && git pull origin master && npm run serve && exit"
+    - ssh root@206.189.139.157 "cd /var/www/mlm-vue && git checkout master && git pull origin master && npm run serve && exit"
   only:
     - master
