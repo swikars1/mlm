@@ -30,6 +30,6 @@ deploy_staging:
     url: bhakaritraders.com
   script:
     - docker build -t app/mlm-vue .
-    - docker run -d -p 80:80 --rm --name BhakariTrafers app/mlm-vue
+    - docker run -d -p 80:80 --rm --name bhakariapp app/mlm-vue
   only:
     - master
