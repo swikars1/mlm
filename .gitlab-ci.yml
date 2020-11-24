@@ -1,0 +1,10 @@
+image: docker
+services:
+  - docker:dind
+stages:
+  - deploy
+step-deploy-prod:
+  stage: deploy
+  script:
+    - docker build -t app/mlm-vue .
+    - docker run -d -p 80:80 --rm --name bhakariTraders app/mlm-vue
