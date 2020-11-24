@@ -18,7 +18,7 @@ before_script:
   # Setup SSH deploy keys
   - 'which ssh-agent || ( apt-get install -qq openssh-client )'
   - eval $(ssh-agent -s)
-  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - ssh-add <(echo "SSH_PRIVATE_KEY")
   - mkdir -p ~/.ssh
   - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     
@@ -29,7 +29,7 @@ deploy_staging:
     name: staging
     url: bhakaritraders.com
   script:
-    - ssh -t -t root@206.189.139.157
+    - ssh -t -t root@bhakaritraders.com
     - cd /var/www/mlm-vue && git checkout master && git pull origin master && npm run serve && exit
   only:
     - master
