@@ -1,10 +1,35 @@
-image: docker
-services:
-  - docker:dind
+image: node:latest
 stages:
+  - build
   - deploy
-step-deploy-prod:
+cache:
+  paths:
+    - node_modules/
+install_dependencies:
+  stage: build
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+before_script:
+  - apt-get update -qq
+  - apt-get install -qq git
+  # Setup SSH deploy keys
+  - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - mkdir -p ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    
+deploy_staging:
   stage: deploy
+  type: deploy
+  environment:
+    name: staging
+    url: bhakaritraders.com
   script:
     - docker build -t app/mlm-vue .
-    - docker run -d -p 80:80 --rm --name bhakariTraders app/mlm-vue
+    - docker run -d -p 80:80 --rm --name BhakariTrafers app/mlm-vue
+  only:
+    - master
