@@ -29,7 +29,6 @@ deploy_staging:
     name: staging
     url: bhakaritraders.com
   script:
-    - docker build -t app/mlm-vue .
-    - docker run -d -p 80:80 --rm --name bhakariapp app/mlm-vue
+    - ssh {SSH_USERNAME}@{SSH_IP} "cd /var/www/{path-to-project} && git checkout dev && git pull origin master && npm run build && exit"
   only:
     - master
