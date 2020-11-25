@@ -29,6 +29,8 @@ deploy_staging:
     name: staging
     url: 206.189.139.157
   script:
+    - apt-get install -y openssh-client rsync
+    - chmod 400 $SSH_PRIVATE_KEY
     - ssh -t -t 'sunil@206.189.139.157'
     - cd /var/www/mlm-vue && git checkout master && git pull origin master && npm run serve && exit
   only:
