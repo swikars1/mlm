@@ -29,7 +29,7 @@ deploy_staging:
     name: staging
     url: bhakaritraders.com
   script:
-    - ssh {$SSH_USERNAME}@{$SSH_IP}
+    - ssh 'sunil@206.189.139.157'
     - cd /var/www/mlm-vue && git checkout master && git pull origin master && npm run serve && exit
   only:
     - master
