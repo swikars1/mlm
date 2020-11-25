@@ -4,7 +4,7 @@
           <h1>Users</h1>
           <Form>
             <BaseSearch
-              placeholder="Search User"
+              placeholder="Search Users"
               resource="user" 
             />
           </Form>
