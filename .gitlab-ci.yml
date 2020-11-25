@@ -27,8 +27,8 @@ deploy_staging:
   type: deploy
   environment:
     name: staging
-    url: 206.189.139.157
+    url: bhakaritraders.com
   script:
-    - cd /var/www/mlm-vue && git checkout master && git pull origin master && npm run serve && exit
+    - ssh {$SSH_USERNAME}@{$SSH_IP} "cd /var/www/mlm_vue && git checkout dev && git pull origin master && npm run build && exit"
   only:
     - master
