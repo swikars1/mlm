@@ -12,6 +12,8 @@ import PaymentIndex from '@/views/payment/index'
 import UserIndex from '@/views/user/index'
 import DashboardIndex from '@/views/dashboard/index'
 import CategoryIndex from '@/views/category/index'
+import HomeIndex from '@/views/home/index'
+
 
 Vue.use(VueRouter)
 
@@ -23,6 +25,15 @@ const routes = [
       requiresAuth: false
     }
   },
+
+  {
+    path: '',
+    component: HomeIndex,
+    meta: {
+      requiresAuth: false
+    }
+  },
+
   {
     path: '/dashboard',
     component: AppLayout,
