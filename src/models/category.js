@@ -6,6 +6,11 @@ class Category extends ApplicationModel{
       super(params)
       this.className = 'Category'
     }
+    static validationRules() {
+      return {
+        name: [{ required: true, message: 'Name required', trigger: 'blur' }],
+      }
+    }
     static resourceName() {
         return 'Category'
     }

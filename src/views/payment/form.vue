@@ -3,6 +3,7 @@
     <Form
       :model="payment"
       ref="customer-payment"
+      :rules="validationRules"
       @submit.native.prevent="handleFormSubmit"
       label-position="top"
     >
@@ -15,6 +16,7 @@
         />
         <BaseInput 
           v-model="payment.name"
+          name="title"
           type="text" 
           label="Payment Title" 
           placeholder="Payment Title " 
@@ -67,7 +69,8 @@ export default {
   components: { Form },
   data() {
     return {
-      payment: new Payment()
+      payment: new Payment(),
+      validationRules: Payment.validationRules(),
     }
   },
   props: {
@@ -80,6 +83,9 @@ export default {
   },
   methods: {
     async handleFormSubmit() {
+      const valid = await this.$refs.payment.validate()
+      if (!valid)
+        return
       await this.$store.dispatch(`${PAYMENT_STORE_KEY}/createPayment`, { payment: this.payment })
       await this.$store.dispatch(`${PAYMENT_STORE_KEY}/getPayments`)
       this.closeDrawer()

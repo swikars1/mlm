@@ -3,12 +3,14 @@
     <Form
       :model="customer"
       ref="customer"
+      :rules="validationRules"
       @submit.native.prevent="handleFormSubmit"
       label-position="top"
     >
       <section>
         <BaseInput 
-          v-model="customer.name" 
+          v-model="customer.name"
+          name="name"
           type="text" 
           label="Name" 
           placeholder="Name" 
@@ -16,6 +18,7 @@
         <BaseInput 
           v-model="customer.email" 
           v-if="creating"
+          name="email"
           type="email" 
           label="Email" 
           placeholder="Email" 
@@ -23,18 +26,21 @@
         <BaseInput 
           v-model="customer.password"
           v-if="creating"
+          name="password"
           type="password" 
           label="Password" 
           placeholder="Password" 
         />
         <BaseInput 
           v-model="customer.phoneNo" 
+          name="contactNumber"
           type="text" 
           label="Contact Number" 
           placeholder="Contact" 
         />
         <BaseInput 
           v-model="customer.referCode"
+          name="referCode"
           v-if="creating"
           type="text" 
           label="Referal Code" 
@@ -55,6 +61,7 @@
         <BaseRemoteSelect 
           placeholder="Select Retailer"
           v-model="customer.retailerId"
+          name="retailerId"
           v-if="creating"
           resource="retailer"
           @on-change="handleRetailerChange"
@@ -103,7 +110,8 @@ export default {
   components: { Form },
   data() {
     return {
-      customer: new Customer()
+      customer: new Customer(),
+      validationRules: Customer.validationRules(),
     }
   },
   props: {
@@ -120,6 +128,9 @@ export default {
   },
   methods: {
     async handleFormSubmit() {
+      const valid = await this.$refs.customer.validate()
+      if (!valid)
+        return
       await this.$store.dispatch(`${CUSTOMER_STORE_KEY}/${this.currentAction}Customer`, { customer: this.customer })
       this.closeDrawer()
     },

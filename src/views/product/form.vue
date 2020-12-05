@@ -3,30 +3,35 @@
     <Form
       :model="product"
       ref="product"
+      :rules="validationRules"
       @submit.native.prevent="handleFormSubmit"
       label-position="top"
     >
       <section>
         <BaseInput 
           v-model="product.name" 
+          name="name"
           type="text" 
           label="Name" 
           placeholder="Name" 
         />
         <BaseInput 
           v-model="product.price" 
+          name="price"
           type="text" 
           label="Price" 
           placeholder="Price" 
         />
         <BaseInput 
           v-model="product.description"
+          name="description"
           type="text" 
           label="Description" 
           placeholder="Description" 
         />
         <BaseInput 
           v-model="product.code"
+          name="productCode"
           type="text" 
           label="Product Code" 
           placeholder="Product Code" 
@@ -70,7 +75,9 @@ export default {
   components: { Form },
   data() {
     return {
-      product: new Product()
+      product: new Product(),
+      validationRules: Product.validationRules(),
+
     }
   },
   props: {
@@ -88,6 +95,9 @@ export default {
   },
   methods: {
     async handleFormSubmit() {
+      const valid = await this.$refs.product.validate()
+      if (!valid)
+        return
       await this.$store.dispatch(`${PRODUCT_STORE_KEY}/${this.currentAction}Product`, { product: this.product })
       this.closeDrawer()
     },

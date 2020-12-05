@@ -3,30 +3,35 @@
     <Form
       :model="retailer"
       ref="retailer"
+      :rules="validationRules"
       @submit.native.prevent="handleFormSubmit"
       label-position="top"
     >
       <section>
         <BaseInput 
           v-model="retailer.name" 
+          name="name"
           type="text" 
           label="Name" 
           placeholder="Name" 
         />
         <BaseInput 
           v-model="retailer.phoneNo" 
+          name="contactNumber"
           type="text" 
           label="Contact Number" 
           placeholder="Contact" 
         />
         <BaseInput 
           v-model="retailer.address"
+          name="address"
           type="text" 
           label="Address" 
           placeholder="Address" 
         />
         <BaseInput 
           v-model="retailer.panNumber"
+          name="panNumber"
           type="text" 
           label="Pan Number" 
           placeholder="Pan Number" 
@@ -65,7 +70,8 @@ export default {
     return {
       retailer: new Retailer(),
       imgSrc: null,
-      retailerImage: null
+      retailerImage: null,
+      validationRules: Retailer.validationRules(),
     }
   },
   props: {
@@ -82,6 +88,9 @@ export default {
   },
   methods: {
     async handleFormSubmit() {
+      const valid = await this.$refs.retailer.validate()
+      if (!valid)
+        return
       await this.$store.dispatch(`${RETAILER_STORE_KEY}/${this.currentAction}Retailer`, { retailer: this.retailer })
       this.closeDrawer()
     },

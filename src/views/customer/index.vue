@@ -14,6 +14,7 @@
           :data="customers"
           :loading="customersLoading"
           :deletable="false"
+          :editable="false"
         > 
           <template #default="{ row }">
             <Tooltip
