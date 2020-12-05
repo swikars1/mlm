@@ -3,36 +3,42 @@
     <Form
       :model="user"
       ref="user"
+      :rules="validationRules"
       @submit.native.prevent="handleFormSubmit"
       label-position="top"
     >
       <section>
         <BaseInput 
           v-model="user.name" 
+          name="name"
           type="text" 
           label="Name" 
           placeholder="Name" 
         />
         <BaseInput 
           v-model="user.email"
+          name="email"
           type="text" 
           label="Email" 
           placeholder="Email" 
         />
         <BaseInput 
           v-model="user.phoneNo" 
+          name="contactNumber"
           type="text" 
           label="Contact Number" 
           placeholder="Contact" 
         />
         <BaseInput 
           v-model="user.address"
+          name="address"
           type="text" 
           label="Address" 
           placeholder="Address" 
         />
         <BaseInput 
           v-model="user.gender"
+          name="gender"
           type="text" 
           label="Gender" 
           placeholder="Gender" 
@@ -61,7 +67,8 @@ export default {
   components: { Form },
   data() {
     return {
-      user: new User()
+      user: new User(),
+      validationRules: User.validationRules()
     }
   },
   props: {
@@ -78,6 +85,9 @@ export default {
   },
   methods: {
     async handleFormSubmit() {
+      const valid = await this.$refs.user.validate()
+      if (!valid)
+        return
       await this.$store.dispatch(`${USER_STORE_KEY}/${this.currentAction}User`, { user: this.user })
       this.closeDrawer()
     },

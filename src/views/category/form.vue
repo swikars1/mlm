@@ -3,12 +3,14 @@
     <Form
       :model="category"
       ref="category"
+      :rules="validationRules"
       @submit.native.prevent="handleFormSubmit"
       label-position="top"
     >
       <section>
         <BaseInput 
           v-model="category.name" 
+          name="name"
           type="text" 
           label="Name" 
           placeholder="Name" 
@@ -37,7 +39,8 @@ export default {
   components: { Form },
   data() {
     return {
-      category: new Category()
+      category: new Category(),
+      validationRules: Category.validationRules(),
     }
   },
   props: {
@@ -54,6 +57,9 @@ export default {
   },
   methods: {
     async handleFormSubmit() {
+      const valid = await this.$refs.category.validate()
+      if (!valid)
+        return
       await this.$store.dispatch(`${CATEGORY_STORE_KEY}/${this.currentAction}Category`, { category: this.category })
       this.closeDrawer()
     },

@@ -3,12 +3,14 @@
     <Form
       :model="retailerType"
       ref="retailerType"
+      :rules="validationRules"
       @submit.native.prevent="handleFormSubmit"
       label-position="top"
     >
       <section>
         <BaseInput 
           v-model="retailerType.name" 
+          name="name"
           type="text" 
           label="Name" 
           placeholder="Name" 
@@ -37,7 +39,8 @@ export default {
   components: { Form },
   data() {
     return {
-      retailerType: new RetailerType()
+      retailerType: new RetailerType(),
+      validationRules: RetailerType.validationRules(),
     }
   },
   props: {
@@ -54,6 +57,9 @@ export default {
   },
   methods: {
     async handleFormSubmit() {
+      const valid = await this.$refs.retailerType.validate()
+      if (!valid)
+        return
       await this.$store.dispatch(`${RETAILER_TYPE_STORE_KEY}/${this.currentAction}RetailerType`, { retailerType: this.retailerType })
       this.closeDrawer()
     },

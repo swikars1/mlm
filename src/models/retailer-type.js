@@ -6,6 +6,12 @@ class RetailerType extends ApplicationModel{
       super(params)
       this.className = 'RetailerType'
     }
+    static validationRules() {
+      return {
+        name: [{ required: true, message: 'Name required', trigger: 'blur' }],
+    }
+        
+    }
     static resourceName() {
         return 'RetailerType'
     }
