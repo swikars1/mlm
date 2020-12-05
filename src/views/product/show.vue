@@ -1,6 +1,6 @@
 <template>
   <div class="show-page">
-    <img  class="drawer-image" :src="product.imageUrl">
+    <BaseImageViewer :src="product.imageUrl"></BaseImageViewer>
     <List>
       <ListItem>
         <ListItemMeta title="Name" :description="product.name"/>
