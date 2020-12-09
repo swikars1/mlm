@@ -8,12 +8,12 @@ class Retailer extends ApplicationModel{
     }
 
     static validationRules() {
-      const phoneNumberRegex = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/
+      const phoneNumberRegex = /(9)[0-9]{9}/
       return {
         name: [{ required: true, message: 'Name required', trigger: 'blur' }],
         address: [{ required: true, message: 'Address required', trigger: 'blur' }],
-        panNumber: [{ required: true, message: 'Address required', trigger: 'blur' }],
-        contactNumber: [
+        panNumber: [{ required: true, message: 'Pan Number required', trigger: 'blur' }],
+        phoneNo: [
           { required: true, message: 'Phone Number required', trigger: 'blur' },
           {
             validator(_rule, value) {

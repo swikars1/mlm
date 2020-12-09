@@ -17,7 +17,7 @@
         />
         <BaseInput 
           v-model="retailer.phoneNo" 
-          name="contactNumber"
+          name="phoneNo"
           type="text" 
           label="Contact Number" 
           placeholder="Contact" 
