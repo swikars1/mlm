@@ -7,13 +7,13 @@ class User extends ApplicationModel{
       this.className = 'User'
     }
     static validationRules() {
-      const phoneNumberRegex = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/
+      const phoneNumberRegex = /(9)[0-9]{9}/
       return {
         name: [{ required: true, message: 'Name required', trigger: 'blur' }],
         email: [{ required: true, message: 'Email required', trigger: 'blur' }],
-        address: [{ required: true, message: 'Email required', trigger: 'blur' }],
-        gender: [{ required: true, message: 'Email required', trigger: 'blur' }],
-        contactNumber: [
+        address: [{ required: true, message: 'Address required', trigger: 'blur' }],
+        gender: [{ required: true, message: 'Gender required', trigger: 'blur' }],
+        phoneNo: [
           { required: true, message: 'Phone Number required', trigger: 'blur' },
           {
             validator(_rule, value) {

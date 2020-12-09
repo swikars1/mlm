@@ -33,7 +33,7 @@
         />
         <BaseInput 
           v-model="customer.phoneNo" 
-          name="contactNumber"
+          name="phoneNo"
           type="text" 
           label="Contact Number" 
           placeholder="Contact" 
