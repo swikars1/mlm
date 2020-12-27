@@ -1,5 +1,6 @@
-const BASE_URL = 'https://mlm-pyramid.herokuapp.com'
+// const BASE_URL = 'https://mlm-pyramid.herokuapp.com'
 // const BASE_URL = 'http://localhost:3000'
+const BASE_URL = 'http://bhakaritraders.com'
 
 const API_URL_PREFIX = '/api/v1'
 
