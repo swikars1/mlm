@@ -19,20 +19,20 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/login',
+    path: '',
     component: LoginIndex,
     meta: {
       requiresAuth: false
     }
   },
 
-  {
-    path: '',
-    component: HomeIndex,
-    meta: {
-      requiresAuth: false
-    }
-  },
+  // {
+  //   path: '',
+  //   component: HomeIndex,
+  //   meta: {
+  //     requiresAuth: false
+  //   }
+  // },
 
   {
     path: '/dashboard',
