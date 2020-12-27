@@ -23,6 +23,13 @@
           label="Email" 
           placeholder="Email" 
         />
+        <BaseSelect
+          label="Select Gender"
+          placeholder="Select Gender"
+          name="gender"
+          v-model="customer.gender"
+          :items="[{ name: 'Male', id: 'Male' }, { name: 'Female', id: 'Female' }]"
+        />
         <BaseInput 
           v-model="customer.password"
           v-if="creating"
@@ -39,14 +46,6 @@
           placeholder="Contact" 
         />
         <BaseInput 
-          v-model="customer.referCode"
-          name="referCode"
-          v-if="creating"
-          type="text" 
-          label="Referal Code" 
-          placeholder="Referal Code" 
-        />
-        <BaseInput 
           v-model="customer.address"
           type="text" 
           label="Address" 
@@ -56,35 +55,7 @@
           v-model="customer.birthday" 
           name='birthday' 
           label="Date of birth" 
-          placeholder="Select date"
-        />
-        <BaseRemoteSelect 
-          placeholder="Select Retailer"
-          v-model="customer.retailerId"
-          name="retailerId"
-          v-if="creating"
-          resource="retailer"
-          @on-change="handleRetailerChange"
-          clearable
-        />
-        <BaseSelect
-          v-if="creating"
-          placeholder="Select Products of Retailer"
-          v-model="customer.productId"
-          :items="products"
-          :disabled="!customer.retailerId"
-          @on-query-change="q => getRetailerProducts(q)"
-          filterable
-          remote
-          clearable
-        />
-        <BaseInput 
-          v-model="customer.qty" 
-          v-if="creating"
-          type="number"
-          label="Quantity" 
-          placeholder="Qty"
-          :disabled="!customer.productId"
+          placeholder="Date of birth"
         />
       </section>
       <footer>
@@ -134,13 +105,6 @@ export default {
       await this.$store.dispatch(`${CUSTOMER_STORE_KEY}/${this.currentAction}Customer`, { customer: this.customer })
       this.closeDrawer()
     },
-    getRetailerProducts(q) {
-      this.$store.dispatch('productStore/getProducts', { q, retailerId: this.customer.retailerId })
-    },
-    handleRetailerChange() {
-      this.$store.dispatch('productStore/getProducts', { retailerId: this.customer.retailerId })
-      this.customer = new Customer({ ...this.customer, productId: "", qty: "" })
-    }
   },
   computed: {
     ...mapGetters({

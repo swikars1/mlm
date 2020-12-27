@@ -9,6 +9,7 @@ import retailerTypeStore from './retailer-type'
 import userStore from './user'
 import categoryStore from './category'
 import authStore from './auth'
+import dashboardStore from './dashboard'
 
 Vue.use(Vuex)
 
@@ -20,7 +21,8 @@ const modules = {
   retailerTypeStore,
   userStore,
   categoryStore,
-  authStore
+  authStore,
+  dashboardStore
 };
 
 const store = new Vuex.Store({

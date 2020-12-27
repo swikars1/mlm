@@ -46,6 +46,16 @@ const IMAGE_UPLOAD_PATH = ({ resourceName, id }) => ({
   headers: { 'content-type': 'multipart/form-data' }
 })
 
+const DASHBOARD_WIDGET_URL = () => ({
+  url: `${API_URL_PREFIX}/dashboard/widgets`,
+  methods: 'GET'
+})
+
+const GENDER_PIE_URL = () => ({
+  url: `${API_URL_PREFIX}/dashboard/gender_pie_chart`,
+  methods: 'GET'
+})
+
 export {
   BASE_URL,
   LOGIN_PATH,
@@ -56,4 +66,6 @@ export {
   DESTROY_PATH,
   CUSTOMER_PAYMENT_PATH,
   IMAGE_UPLOAD_PATH,
+  DASHBOARD_WIDGET_URL,
+  GENDER_PIE_URL
 }

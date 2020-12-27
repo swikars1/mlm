@@ -36,8 +36,16 @@
           label="Pan Number" 
           placeholder="Pan Number" 
         />
+        <BaseInput 
+          v-model="retailer.percent"
+          name="percent"
+          type="number" 
+          label="Percentage" 
+          placeholder="Percentage" 
+        />
         <BaseRemoteSelect 
-          placeholder="Select Retailer"
+          placeholder="Select Retailer Type"
+          label="Select Retailer Type"
           v-model="retailer.retailerTypeId"
           v-if="creating"
           resource="retailerType"

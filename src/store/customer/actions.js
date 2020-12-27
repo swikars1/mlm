@@ -52,11 +52,21 @@ const addPayment = (context, { customer: resource }) =>
     action: 'addPayment'
   })
 
+const uploadDocument = (context, params) => 
+  apiDispatcher(context, {
+    resource: new Customer(params),
+    storeKey: 'customers',
+    loadingKey: 'customerSaveLoading',
+    action: 'uploadDocument',
+    commitType: 'update'
+  })
+
 export default {
   getCustomers,
   createCustomer,
   updateCustomer,
   getCustomer,
   destroyCustomer,
-  addPayment
+  addPayment,
+  uploadDocument
 }

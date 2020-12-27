@@ -18,12 +18,21 @@
         <ListItemMeta title="Birth Date" :description="customer.birthday"/>
       </ListItem>
       <ListItem>
-        <ListItemMeta title="Expenditure" :description="String(customer.expenditure)"/>
+        <ListItemMeta title="Expenditure" :description="String(customer.expenditure || 0)"/>
       </ListItem>
-      <ListItem>
-        <ListItemMeta title="Referal Code" :description="customer.referCode"/>
-      </ListItem>
-    </List> 
+    </List>
+    <div>
+      <List>
+        <ListItem>
+          <ListItemMeta title="ID Front" />
+          <BaseImageViewer :src="customer.frontUrl || ''" />
+        </ListItem>
+        <ListItem>
+          <ListItemMeta title="ID Back" />
+          <BaseImageViewer :src="customer.backUrl || ''" />
+        </ListItem>
+      </List>
+    </div>
   </div>
 </template>
 

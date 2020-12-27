@@ -8,7 +8,7 @@
               <Icon type="ios-people" size="28"/>
             </div>
             <div class="text-count">
-              <span class="actual-count">12</span>
+              <span class="actual-count">{{ widgets.totalCustomers }}</span>
               <span class="count-label">Total Customers</span>
             </div>
           </div>
@@ -17,17 +17,8 @@
               <Icon type="ios-cart" size="28"/>
             </div>
             <div class="text-count">
-              <span class="actual-count">22</span>
+              <span class="actual-count">{{ widgets.totalProducts }}</span>
               <span class="count-label">Total Products</span>
-            </div>
-          </div>
-          <div class="each-count">
-            <div class="icon-wrapper category-icon">
-              <Icon type="md-cart" size="28"/>
-            </div>
-            <div class="text-count">
-              <span class="actual-count">18</span>
-              <span class="count-label">Total Categories</span>
             </div>
           </div>
           <div class="each-count">
@@ -35,23 +26,51 @@
               <Icon type="ios-briefcase" size="28"/>
             </div>
             <div class="text-count">
-              <span class="actual-count">15</span>
-              <span class="count-label">Total Retailers</span>
+              <span class="actual-count">{{ widgets.totalRetailers }}</span>
+              <span class="count-label">Total Shops</span>
+            </div>
+          </div>
+          <div class="each-count">
+            <div class="icon-wrapper cash-icon">
+              <Icon type="md-cash" size="28"/>
+            </div>
+            <div class="text-count">
+              <span class="actual-count">{{ widgets.todayIncome }}</span>
+              <span class="count-label">Today's Income</span>
+            </div>
+          </div>
+          <div class="each-count">
+            <div class="icon-wrapper cash-icon">
+              <Icon type="md-cash" size="28"/>
+            </div>
+            <div class="text-count">
+              <span class="actual-count">{{ widgets.monthlyIncome }}</span>
+              <span class="count-label">Monthly Income</span>
+            </div>
+          </div>
+          <div class="each-count">
+            <div class="icon-wrapper cash-icon">
+              <Icon type="ios-cash" size="28"/>
+            </div>
+            <div class="text-count">
+              <span class="actual-count">{{ widgets.totalIncome }}</span>
+              <span class="count-label">Total Income</span>
             </div>
           </div>
         </div>
+
         <div class="dashboard-chart-wrapper">
           <BaseEchart
             type="pie"
             title="Male/Female Customer"
-            :pie-data="pieData"
+            :pie-data="genderPieChart"
           />
-          <BaseEchart
+<!--           <BaseEchart
             type="bar"
             title="Male/Female Customer"
             :x-axis="['a','b','c','d','e','f','g']"
             :legend="['Male/Female']"
-            :bar-data="barData" />
+            :bar-data="barData" /> -->
         </div>
       </div>
   </div>
@@ -59,31 +78,27 @@
 
 <script>
 import { Icon } from 'view-design'
+import { mapGetters } from 'vuex'
 
+const DASHBOARD_STORE_KEY = 'dashboardStore'
 export default {
   components: {
     Icon
   },
   data() {
     return {
-      pie: {
-        series: {
-          type: 'pie',
-          data: [
-              {name: 'A', value: 1212},
-              {name: 'B', value: 2323},
-              {name: 'C', value: 1919}
-          ]
-        }
-      },
-      pieData: [
-          { name: 'A', value: 1212 },
-          { name: 'B', value: 2323 },
-          { name: 'C', value: 1919 }],
-      barData: [
-        3,7,1,11,4,15,2
-      ]
+
     }
+  },
+  mounted() {
+    this.$store.dispatch(`${DASHBOARD_STORE_KEY}/getWidgets`)
+    this.$store.dispatch(`${DASHBOARD_STORE_KEY}/getGenderPieChart`)
+  },
+  computed: {
+    ...mapGetters({
+      widgets: `${DASHBOARD_STORE_KEY}/widgets`,
+      genderPieChart: `${DASHBOARD_STORE_KEY}/genderPieChart`
+    })
   }
 }
 </script>
@@ -95,13 +110,10 @@ export default {
     h1
       text-align: center
     .dashboard-content
-      margin-top: 5rem
-      margin-top: 1rem
       .count-wrapper
-        display: flex
-        justify-content: space-between
-        padding: 0 4rem
-        flex-wrap: wrap
+        display: grid
+        grid-template-columns: repeat(3, 2fr)
+        padding: 0 14rem
         .each-count
           display: flex
           place-content: center
@@ -136,6 +148,10 @@ export default {
             background: #FFE9F4
             i
               color: #FF0072
+          .cash-icon
+            background: #e3f3d5
+            i
+              color: #403b3d
           .text-count
             display: flex
             flex-direction: column

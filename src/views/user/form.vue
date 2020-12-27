@@ -29,19 +29,12 @@
           label="Contact Number" 
           placeholder="Contact" 
         />
-        <BaseInput 
-          v-model="user.address"
-          name="address"
-          type="text" 
-          label="Address" 
-          placeholder="Address" 
-        />
-        <BaseInput 
+        <BaseSelect
           v-model="user.gender"
+          label="Select Gender"
+          placeholder="Select Gender"
           name="gender"
-          type="text" 
-          label="Gender" 
-          placeholder="Gender" 
+          :items="[{ name: 'Male', id: 'Male' }, { name: 'Female', id: 'Female' }]"
         />
       </section>
       <footer>

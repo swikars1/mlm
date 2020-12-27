@@ -13,29 +13,24 @@
           label="Payment Title" 
           placeholder="Payment Title " 
         />
+        <BaseInput 
+          v-model="customer.billNo" 
+          type="text"
+          label="Bill Number" 
+          placeholder="Bill Number"
+        />
         <BaseRemoteSelect
-          placeholder="Select Retailer"
+          placeholder="Select Shop"
+          label="Select Shop" 
           v-model="customer.retailerId"
           resource="retailer"
-          @on-change="handleRetailerChange"
-          clearable
-        />
-        <BaseSelect
-          placeholder="Select Products of Retailer"
-          v-model="customer.productId"
-          :items="products"
-          :disabled="!customer.retailerId"
-          @on-query-change="q => getRetailerProducts(q)"
-          filterable
-          remote
           clearable
         />
         <BaseInput 
-          v-model="customer.qty" 
+          v-model="customer.expenditure" 
           type="number"
-          label="Quantity" 
-          placeholder="Qty"
-          :disabled="!customer.productId"
+          label="Expenditure"
+          placeholder="Expenditure"
         />
       </section>
       <footer>
@@ -81,13 +76,6 @@ export default {
     async handleFormSubmit() {
       await this.$store.dispatch(`${CUSTOMER_STORE_KEY}/addPayment`, { customer: this.customer })
       this.closeDrawer()
-    },
-    getRetailerProducts(q) {
-      this.$store.dispatch('productStore/getProducts', { q, retailerId: this.customer.retailerId })
-    },
-    handleRetailerChange() {
-      this.$store.dispatch('productStore/getProducts', { retailerId: this.customer.retailerId })
-      this.customer = new Customer({ ...this.customer, productId: "", qty: "" })
     }
   },
   computed: {

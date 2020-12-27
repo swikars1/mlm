@@ -13,6 +13,7 @@ class Retailer extends ApplicationModel{
         name: [{ required: true, message: 'Name required', trigger: 'blur' }],
         address: [{ required: true, message: 'Address required', trigger: 'blur' }],
         panNumber: [{ required: true, message: 'Pan Number required', trigger: 'blur' }],
+        percent: [{ required: true, message: 'Percent required', trigger: 'blur' }],
         phoneNo: [
           { required: true, message: 'Phone Number required', trigger: 'blur' },
           {

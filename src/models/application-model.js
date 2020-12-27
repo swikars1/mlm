@@ -54,6 +54,18 @@ class ApplicationModel {
     const resourceName = _.snakeCase(plural(className))
     return v1HTTPService({ ...IMAGE_UPLOAD_PATH({ resourceName, id: this.id }), data })
   }
+  uploadDocument() {
+    let data = new FormData()
+    for (let key in this) {
+      if (this[key].constructor.name === 'FormData' && this[key].get('avatar')) {
+        data.append(key, this[key].get('avatar'))
+      }
+    }
+    data.append('type', this.type)
+    const { className } = this
+    const resourceName = _.snakeCase(plural(className))
+    return v1HTTPService({ ...IMAGE_UPLOAD_PATH({ resourceName, id: this.id }), data })
+  }
 }
 
 export default ApplicationModel

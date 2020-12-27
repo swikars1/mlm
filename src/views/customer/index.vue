@@ -29,9 +29,31 @@
                 @click.stop="handlePayment(row)"
               />
             </Tooltip>
+            <Tooltip
+              placement="left-start"
+              trigger="hover"
+              content="Add Documents"
+            >
+              <Icon
+                class="pointer hover-green-text m-r-1" 
+                type="md-image"
+                size="19"
+                @click.stop="handleDocumentsDrawer(row)"
+              />
+            </Tooltip>
           </template>
         </BaseTable>
-
+        <BaseDrawer
+          v-model="documentsDrawer"
+          title="Upload Documents"
+        >
+          <MultiImageUpload
+            :details="documentImages"
+            resource="customer"
+            v-if="documentsDrawer"
+            :id="id"
+          />
+        </BaseDrawer>
         <BaseDrawer
           v-model="paymentDrawer"
           title="Add Purchase"
@@ -71,6 +93,7 @@ import { Icon, Tooltip, Form } from 'view-design'
 import CustomerNew from './new'
 import PaymentForm from './payment-form'
 import Customer from '@/models'
+import MultiImageUpload from '@/components/multi-image-upload'
 import CustomerShow from './show.vue'
 import Pagination, { PaginationMixin } from '@/components/pagination'
 
@@ -85,20 +108,27 @@ export default {
     PaymentForm,
     CustomerShow,
     Pagination,
-    Form  
+    Form,
+    MultiImageUpload
   },
   data() {
     return {
       columns: CUSTOMER_COLUMNS,
       showDrawer: false,
       paymentDrawer: false,
-      id: null
+      id: null,
+      documentsDrawer: false,
+      documentImages: [{ label: 'Add Front Page', type: 'front' }, { label: 'Add Back Page', type: 'back' }]
     }
   },
   mounted() {
     this.$store.dispatch(`${CUSTOMER_STORE_KEY}/getCustomers`)
   },
   methods: {
+    handleDocumentsDrawer(row) {
+      this.id = row && row.id
+      this.documentsDrawer = !this.documentsDrawer
+    },
     handleCreate(){
       this.showDrawer = !this.showDrawer
     },

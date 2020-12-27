@@ -14,7 +14,16 @@ class Customer extends ApplicationModel{
       return {
         name: [{ required: true, message: 'Name required', trigger: 'blur' }],
         email: [{ required: true, message: 'Email required', trigger: 'blur' }],
-        referCode: [{ required: true, message: 'Refer Code required', trigger: 'blur' }],
+        gender: [
+          { required: true, message: 'Gender required', trigger: 'blur' },
+          {
+            validator(_rule, value) {
+              if (value) {
+                return true
+              }
+            }
+          }
+        ],
         phoneNo: [
           { required: true, message: 'Phone Number required', trigger: 'blur' },
           {
