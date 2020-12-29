@@ -1,5 +1,9 @@
 const CUSTOMER_COLUMNS = [
 	{
+	  title: 'Cust ID',
+	  key: 'id',
+	},
+	{
 	  title: 'Name',
 	  key: 'name',
 	},
@@ -52,6 +56,10 @@ const USER_COLUMNS = [
 
 const RETAILER_COLUMNS = [
 	{
+	  title: 'Shop ID',
+	  key: 'id',
+	},
+	{
 	  title: 'Name',
 	  key: 'name',
 	},
@@ -60,12 +68,21 @@ const RETAILER_COLUMNS = [
 	  key: 'panNumber',
 	},
 	{
-		title: 'Phone No',
+	  title: 'Email',
+	  key: 'email',
+	},
+
+	{
+		title: 'Contact No',
 		key: 'phoneNo',
 	},
 	{
 		title: 'Address',
 		key: 'address',
+	},
+	{
+		title: 'Profit %',
+		key: 'percent',
 	},
 	{
 		title: 'Action',

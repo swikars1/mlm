@@ -16,6 +16,13 @@
           placeholder="Name" 
         />
         <BaseInput 
+          v-model="retailer.email" 
+          name="email"
+          type="text" 
+          label="E-mail" 
+          placeholder="Email Address" 
+        />
+        <BaseInput 
           v-model="retailer.phoneNo" 
           name="phoneNo"
           type="text" 

@@ -3,7 +3,7 @@
      	<h1>Dashboard</h1>
       <div class="dashboard-content">
         <div class="count-wrapper">
-          <div class="each-count">
+          <div class="each-count" @click="handleNavigate('customers')">
             <div class="icon-wrapper customer-icon">
               <Icon type="ios-people" size="28"/>
             </div>
@@ -12,7 +12,7 @@
               <span class="count-label">Total Customers</span>
             </div>
           </div>
-          <div class="each-count">
+          <div class="each-count" @click="handleNavigate('products')">
             <div class="icon-wrapper product-icon">
               <Icon type="ios-cart" size="28"/>
             </div>
@@ -21,7 +21,7 @@
               <span class="count-label">Total Products</span>
             </div>
           </div>
-          <div class="each-count">
+          <div class="each-count" @click="handleNavigate('retailers')">
             <div class="icon-wrapper retailer-icon">
               <Icon type="ios-briefcase" size="28"/>
             </div>
@@ -89,6 +89,11 @@ export default {
     return {
 
     }
+  },
+  methods: {
+    handleNavigate(route) {
+      this.$router.push(route)
+    },
   },
   mounted() {
     this.$store.dispatch(`${DASHBOARD_STORE_KEY}/getWidgets`)
