@@ -14,10 +14,19 @@
         <ListItemMeta title="Expenditure" :description="String(payment.expenditure)"/>
       </ListItem>
       <ListItem>
-        <ListItemMeta title="Percentage" :description="payment.percent" />
+        <ListItemMeta title="Percentage" :description="String(payment.percent)" />
       </ListItem>
       <ListItem>
-        <ListItemMeta title="Cashback" :description="payment.cashback" />
+        <ListItemMeta title="Total Cashback" :description="String(payment.cashback)" />
+      </ListItem>
+      <ListItem>
+        <ListItemMeta title="Self Profit" :description="String(payment.selfProfit)" />
+      </ListItem>
+      <ListItem>
+        <ListItemMeta title="Company's Profit" :description="String(payment.companyProfit)" />
+      </ListItem>
+      <ListItem>
+        <ListItemMeta :title="`Each Parent Profit (No. of Parent - ${payment.profitParentCount})`" :description="String(payment.eachParentProfit)" />
       </ListItem>
     </List>
   </div>

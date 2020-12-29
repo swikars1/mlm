@@ -18,8 +18,12 @@ const CUSTOMER_COLUMNS = [
 		key: 'phoneNo',
 	},
 	{
-		title: 'Address',
-		key: 'address',
+		title: "Today's Income",
+		key: 'todaysIncome'
+	},
+	{
+		title: 'Monthly Income',
+		key: 'monthlyIncome'
 	},
   {
     title: 'Status',
