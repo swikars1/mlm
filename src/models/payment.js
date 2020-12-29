@@ -7,11 +7,17 @@ class Payment extends ApplicationModel{
       this.className = 'Payment'
     }
     static validationRules() {
-      const phoneNumberRegex = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/
       return {
-        title: [{ required: true, message: 'Payment title required', trigger: 'blur' }],
+        name: [{ required: true, message: 'Payment title required', trigger: 'blur' }],
       }
     }
+    static customerPaymentRules() {
+      return {
+        name: [{ required: true, message: 'Payment title required', trigger: 'blur' }],
+        billNo: [{ required: true, message: 'Bill Number required', trigger: 'blur' }],
+        expenditure: [{ required: true, message: 'Expenditure required', trigger: 'blur' }],
+      }
+    }    
     static resourceName() {
         return 'Payment'
     }

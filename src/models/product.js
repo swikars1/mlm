@@ -12,7 +12,7 @@ class Product extends ApplicationModel{
         name: [{ required: true, message: 'Name required', trigger: 'blur' }],
         price: [{ required: true, message: 'Price required', trigger: 'blur' }],
         description: [{ required: true, message: 'Description required', trigger: 'blur' }],
-        productCode: [{ required: true, message: 'Product Code required', trigger: 'blur' }],
+        code: [{ required: true, message: 'Product Code required', trigger: 'blur' }],
 	}
         
     }

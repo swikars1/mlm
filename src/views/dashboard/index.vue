@@ -3,7 +3,7 @@
      	<h1>Dashboard</h1>
       <div class="dashboard-content">
         <div class="count-wrapper">
-          <div class="each-count" @click="handleNavigate('customers')">
+          <div class="each-count pointer" @click="handleNavigate('customers')">
             <div class="icon-wrapper customer-icon">
               <Icon type="ios-people" size="28"/>
             </div>
@@ -12,7 +12,7 @@
               <span class="count-label">Total Customers</span>
             </div>
           </div>
-          <div class="each-count" @click="handleNavigate('products')">
+          <div class="each-count pointer" @click="handleNavigate('products')">
             <div class="icon-wrapper product-icon">
               <Icon type="ios-cart" size="28"/>
             </div>
@@ -21,7 +21,7 @@
               <span class="count-label">Total Products</span>
             </div>
           </div>
-          <div class="each-count" @click="handleNavigate('retailers')">
+          <div class="each-count pointer" @click="handleNavigate('retailers')">
             <div class="icon-wrapper retailer-icon">
               <Icon type="ios-briefcase" size="28"/>
             </div>
@@ -111,7 +111,7 @@ export default {
   .dashboard-wrapper
     padding: 2rem
     height: 100%
-    background: #F3F7FB
+    background: linear-gradient(to bottom, #f3f3f3, #ffffff)
     h1
       text-align: center
     .dashboard-content

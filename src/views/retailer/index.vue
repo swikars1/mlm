@@ -1,10 +1,10 @@
 <template>
     <div class="table-index-page">
         <header>
-          <h1>Retailers</h1>
+          <h1>Shops</h1>
            <Form>
             <BaseSearch
-              placeholder="Search Retailer"
+              placeholder="Search Shops"
               resource="retailer"
             />
           </Form>
@@ -44,7 +44,7 @@
         </BaseDrawer>
         <BaseDrawer
           v-model="showDrawer"
-          title="Create Retailer"
+          title="Create Shop"
         >
           <RetailerNew
             v-if="showDrawer"
@@ -56,7 +56,7 @@
           resource="retailer"
         />
         <BaseButton class="m-l-1" @click="handleCreate">
-          Create Retailer
+          Create Shop
         </BaseButton>
       </footer>
     </div>

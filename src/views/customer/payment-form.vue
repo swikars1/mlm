@@ -2,26 +2,30 @@
   <div class="customer-payment-form">
     <Form
       :model="customer"
-      ref="customer-payment"
+      ref="paymentcus"
       @submit.native.prevent="handleFormSubmit"
       label-position="top"
+      :rules="paymentValidation"
     >
       <section>
         <BaseInput 
           v-model="customer.name"
           type="text" 
+          name="name"
           label="Payment Title" 
           placeholder="Payment Title " 
         />
         <BaseInput 
           v-model="customer.billNo" 
           type="text"
+          name="billNo"
           label="Bill Number" 
           placeholder="Bill Number"
         />
         <BaseRemoteSelect
           placeholder="Select Shop"
-          label="Select Shop" 
+          label="Select Shop"
+          name="retailerId" 
           v-model="customer.retailerId"
           resource="retailer"
           clearable
@@ -29,6 +33,7 @@
         <BaseInput 
           v-model="customer.expenditure" 
           type="number"
+          name="expenditure"
           label="Expenditure"
           placeholder="Expenditure"
         />
@@ -49,6 +54,7 @@
 import { mapGetters } from 'vuex'
 import { Form } from 'view-design'
 import Customer from '@/models/customer'
+import Payment from '@/models/payment'
 
 const CUSTOMER_STORE_KEY = 'customerStore'
 
@@ -56,7 +62,8 @@ export default {
   components: { Form },
   data() {
     return {
-      customer: new Customer()
+      customer: new Customer(),
+      paymentValidation: Payment.customerPaymentRules()
     }
   },
   props: {
@@ -74,9 +81,12 @@ export default {
   },
   methods: {
     async handleFormSubmit() {
-      await this.$store.dispatch(`${CUSTOMER_STORE_KEY}/addPayment`, { customer: this.customer })
+      const valid = await this.$refs.paymentcus.validate()
+      if (!valid || !this.customer.retailerId)
+        return
+      await this.$store.dispatch(`${CUSTOMER_STORE_KEY}/addPayment`, { customer: this.customer })      
       this.closeDrawer()
-    }
+    },
   },
   computed: {
     ...mapGetters({

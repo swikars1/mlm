@@ -1,3 +1,5 @@
+import BaseStatusBadge from '@/components/_base-status-badge'
+
 const CUSTOMER_COLUMNS = [
 	{
 	  title: 'Cust ID',
@@ -19,6 +21,10 @@ const CUSTOMER_COLUMNS = [
 		title: 'Address',
 		key: 'address',
 	},
+  {
+    title: 'Status',
+    key: 'status',
+  },
 	{
 		title: 'Action',
 		slot: 'action',
@@ -81,7 +87,7 @@ const RETAILER_COLUMNS = [
 		key: 'address',
 	},
 	{
-		title: 'Profit %',
+		title: 'Profit (%)',
 		key: 'percent',
 	},
 	{
@@ -148,8 +154,8 @@ const PAYMENT_COLUMNS = [
 		key: 'retailer'
 	},
 	{
-		title: 'Product',
-		key: 'product'
+		title: 'Profit (%)',
+		key: 'percent'
 	},
 ]
 

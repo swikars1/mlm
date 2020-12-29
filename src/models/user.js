@@ -11,7 +11,9 @@ class User extends ApplicationModel{
       return {
         name: [{ required: true, message: 'Name required', trigger: 'blur' }],
         email: [{ required: true, message: 'Email required', trigger: 'blur' }],
+        password: [{ required: true, message: 'Email required', trigger: 'blur' }],
         gender: [{ required: true, message: 'Gender required', trigger: 'blur' }],
+        role: [{ required: true, message: 'Role required', trigger: 'blur' }],
         phoneNo: [
           { required: true, message: 'Phone Number required', trigger: 'blur' },
           {

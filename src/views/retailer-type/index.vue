@@ -1,10 +1,10 @@
 <template>
     <div class="table-index-page">
         <header>
-          <h1>RetailerTypes</h1>
+          <h1>Shop Types</h1>
           <Form>
             <BaseSearch
-              placeholder="Search Retailer Type"
+              placeholder="Search Shop Type"
               resource="retailerType"
             />
           </Form>
@@ -33,7 +33,7 @@
           resource="retailerType"
         />
         <BaseButton class="m-l-1" @click="handleCreate">
-          Create RetailerType
+          Create Shop Type
         </BaseButton>
       </footer>
     </div>

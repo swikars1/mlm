@@ -2,7 +2,7 @@
   <div class="customer-payment-form">
     <Form
       :model="payment"
-      ref="customer-payment"
+      ref="customerpayment"
       :rules="validationRules"
       @submit.native.prevent="handleFormSubmit"
       label-position="top"
@@ -10,40 +10,38 @@
       <section>
         <BaseRemoteSelect
           placeholder="Select Customer"
+          label="Select Customer"
           v-model="payment.customerId"
           resource="customer"
           clearable
         />
         <BaseInput 
           v-model="payment.name"
-          name="title"
+          name="name"
           type="text" 
           label="Payment Title" 
-          placeholder="Payment Title " 
+          placeholder="Payment Title" 
+        />
+        <BaseInput 
+          v-model="payment.billNo" 
+          type="text"
+          name="billNo"
+          label="Bill Number" 
+          placeholder="Bill Number"
         />
         <BaseRemoteSelect
-          placeholder="Select Retailer"
+          placeholder="Select Shop"
           v-model="payment.retailerId"
           resource="retailer"
-          @on-change="handleRetailerChange"
-          clearable
-        />
-        <BaseSelect
-          placeholder="Select Products of Retailer"
-          v-model="payment.productId"
-          :items="products"
-          :disabled="!payment.retailerId"
-          @on-query-change="q => getRetailerProducts(q)"
-          filterable
-          remote
+          label="Select Shop"
           clearable
         />
         <BaseInput 
-          v-model="payment.qty" 
+          v-model="payment.expenditure" 
           type="number"
-          label="Quantity" 
-          placeholder="Qty"
-          :disabled="!payment.productId"
+          name="expenditure"
+          label="Expenditure"
+          placeholder="Expenditure"
         />
       </section>
       <footer>
@@ -70,7 +68,7 @@ export default {
   data() {
     return {
       payment: new Payment(),
-      validationRules: Payment.validationRules(),
+      validationRules: Payment.customerPaymentRules(),
     }
   },
   props: {
@@ -83,20 +81,13 @@ export default {
   },
   methods: {
     async handleFormSubmit() {
-      const valid = await this.$refs.payment.validate()
-      if (!valid)
+      const valid = await this.$refs.customerpayment.validate()
+      if (!valid || !this.payment.customerId || !this.payment.retailerId)
         return
       await this.$store.dispatch(`${PAYMENT_STORE_KEY}/createPayment`, { payment: this.payment })
       await this.$store.dispatch(`${PAYMENT_STORE_KEY}/getPayments`)
       this.closeDrawer()
     },
-    getRetailerProducts(q) {
-      this.$store.dispatch('productStore/getProducts', { q, retailerId: this.payment.retailerId })
-    },
-    handleRetailerChange() {
-      this.$store.dispatch('productStore/getProducts', { retailerId: this.payment.retailerId })
-      this.payment = new Payment({ ...this.payment, productId: "" })
-    }
   },
   computed: {
     ...mapGetters({

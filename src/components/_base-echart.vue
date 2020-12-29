@@ -63,8 +63,11 @@ export default {
 <style lang="sass">
 .echarts-wrapper
   padding: 4rem
-  padding: 2.5rem 4rem
-  canvas
-    box-shadow: 0px 0px 6px 0px rgba(207, 207, 207, 75%)
-    border-radius: 8px
+  padding: 2.5rem 14rem
+  .echarts
+    div
+      background: white
+      canvas
+        box-shadow: 0px 0px 6px 0px rgba(207, 207, 207, 75%)
+        border-radius: 8px
 </style>

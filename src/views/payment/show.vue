@@ -5,13 +5,19 @@
         <ListItemMeta title="Name" :description="payment.name"/>
       </ListItem>
       <ListItem>
+        <ListItemMeta title="Customer" :description="payment.customer" />
+      </ListItem>
+      <ListItem>
+        <ListItemMeta title="Retailer" :description="payment.retailer" />
+      </ListItem>
+      <ListItem>
         <ListItemMeta title="Expenditure" :description="String(payment.expenditure)"/>
       </ListItem>
       <ListItem>
-        <ListItemMeta title="Customer" :description="payment.customer"/>
+        <ListItemMeta title="Percentage" :description="payment.percent" />
       </ListItem>
       <ListItem>
-        <ListItemMeta title="Retailer" :description="payment.retailer"/>
+        <ListItemMeta title="Cashback" :description="payment.cashback" />
       </ListItem>
     </List>
   </div>

@@ -52,13 +52,8 @@ export default {
           icon: 'ios-people'
         },
         {
-          title: 'Retailers',
+          title: 'Shops',
           route: '/retailers',
-          icon: 'ios-briefcase'
-        },
-        {
-          title: 'Retailer Types',
-          route: '/retailer-type',
           icon: 'ios-briefcase'
         },
         {
@@ -67,13 +62,18 @@ export default {
           icon: 'ios-card'
         },
         {
-          title: 'Product Categories',
-          route: '/category',
-          icon: 'ios-cart'
+          title: 'Shop Types',
+          route: '/retailer-type',
+          icon: 'ios-briefcase'
         },
         {
           title: 'Products',
           route: '/products',
+          icon: 'ios-cart'
+        },
+        {
+          title: 'Categories',
+          route: '/category',
           icon: 'ios-cart'
         },
         {
@@ -99,7 +99,7 @@ export default {
   methods: {
     handleLogout() {
       this.$store.dispatch('authStore/authLogout').then(() => {
-        this.$router.push('/login')
+        this.$router.push('/')
       })
     }
   },
@@ -140,5 +140,7 @@ export default {
     cursor: pointer
     width: 100%
     place-items: center
+    z-index: 99999
+    background: white
     border-top: 2px solid #cccaca
 </style>

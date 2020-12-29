@@ -18,7 +18,7 @@
         <BaseInput 
           v-model="product.price" 
           name="price"
-          type="text" 
+          type="number" 
           label="Price" 
           placeholder="Price" 
         />
@@ -31,14 +31,15 @@
         />
         <BaseInput 
           v-model="product.code"
-          name="productCode"
+          name="code"
           type="text" 
           label="Product Code" 
           placeholder="Product Code" 
         />
         <BaseSelect 
           :items="categories"
-          placeholder="Select Category"
+          label="Select Categories"
+          placeholder="Select Categories"
           v-model="product.categoryIds"
           remote
           filterable
@@ -48,6 +49,7 @@
         <BaseRemoteSelect 
           placeholder="Select Retailer"
           v-model="product.retailerId"
+          label="Select Retailer"
           resource="retailer"
           clearable
         />

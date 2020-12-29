@@ -51,8 +51,8 @@
           placeholder="Percentage" 
         />
         <BaseRemoteSelect 
-          placeholder="Select Retailer Type"
-          label="Select Retailer Type"
+          placeholder="Select Shop Type"
+          label="Select Shop Type"
           v-model="retailer.retailerTypeId"
           v-if="creating"
           resource="retailerType"

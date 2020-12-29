@@ -23,6 +23,13 @@
           placeholder="Email" 
         />
         <BaseInput 
+          v-model="user.password"
+          name="password"
+          type="password" 
+          label="Password" 
+          placeholder="Password" 
+        />
+        <BaseInput 
           v-model="user.phoneNo" 
           name="phoneNo"
           type="text" 
@@ -35,6 +42,13 @@
           placeholder="Select Gender"
           name="gender"
           :items="[{ name: 'Male', id: 'Male' }, { name: 'Female', id: 'Female' }]"
+        />
+        <BaseSelect
+          v-model="user.role"
+          label="Select Role"
+          placeholder="Select Role"
+          name="role"
+          :items="[{ name: 'Admin', id: 'admin' }]"
         />
       </section>
       <footer>
