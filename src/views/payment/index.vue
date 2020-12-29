@@ -1,7 +1,7 @@
 <template>
     <div class="table-index-page">
         <header>
-          <h1>Payments</h1>
+          <h1>Payments <span v-if="isFiltered">of {{ $route.query.name }}</span></h1>
           <Form>
             <BaseSearch
               placeholder="Search Payment"
@@ -68,10 +68,15 @@ export default {
       paymentDrawer: false
     }
   },
-  mounted() {
-    this.$store.dispatch(`${PAYMENT_STORE_KEY}/getPayments`)
+  async mounted() {
+    this.handleImmigrantQuery(this.$route.query)
+    if (!this.isFiltered)
+      this.$store.dispatch(`${PAYMENT_STORE_KEY}/getPayments`)
   },
   methods: {
+    handleImmigrantQuery(query) {
+      this.$store.dispatch(`${PAYMENT_STORE_KEY}/getPayments`, query)
+    },
     handleCreate(){
       this.showDrawer = !this.showDrawer
     },
@@ -83,7 +88,10 @@ export default {
     ...mapGetters({
       payments: `${PAYMENT_STORE_KEY}/payments`,
       paymentsLoading: `${PAYMENT_STORE_KEY}/paymentsLoading`
-    })
+    }),
+    isFiltered() {
+      return !_.isEmpty(this.$route.query)
+    },
   }
 }
 </script>

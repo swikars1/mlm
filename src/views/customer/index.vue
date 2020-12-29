@@ -24,7 +24,7 @@
             >
               <Icon
                 class="pointer hover-green-text m-r-1" 
-                type="md-add-circle"
+                type="md-cash"
                 size="20"
                 @click.stop="handlePayment(row)"
               />
@@ -36,7 +36,7 @@
             >
               <Icon
                 class="pointer hover-green-text m-r-1" 
-                type="md-image"
+                type="md-images"
                 size="19"
                 @click.stop="handleDocumentsDrawer(row)"
               />

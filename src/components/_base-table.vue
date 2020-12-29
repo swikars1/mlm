@@ -53,7 +53,8 @@
         :is="resourceShowComponent"
         v-if="resourceShowDrawer"
         v-bind="{
-          id: resource.id
+          id: resource.id,
+          name: resource.name
         }"
         v-on="$listeners"
       />

@@ -13,11 +13,7 @@
       <ListItem>
         <ListItemMeta title="Retailer" :description="payment.retailer"/>
       </ListItem>
-      <ListItem>
-        <ListItemMeta title="Product" :description="payment.product"/>
-      </ListItem>
-      
-    </List> 
+    </List>
   </div>
 </template>
 
@@ -48,7 +44,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch(`${STORE_KEY}/getPayment`, {id: this.id})
+    this.$store.dispatch(`${STORE_KEY}/getPayment`, { id: this.id })
   },
   computed: {
     ...mapGetters({

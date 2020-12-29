@@ -31,8 +31,17 @@
           <ListItemMeta title="ID Back" />
           <BaseImageViewer :src="customer.backUrl || ''" />
         </ListItem>
+        <ListItem>
+          <ListItemMeta title="Bills" />
+        </ListItem>
+        <BaseImageViewer v-for="(bill, index) in customer.bills" :key="index" :src="bill" />
       </List>
     </div>
+    <footer>
+      <BaseButton @click="gotoCustomerPayments">
+        Payment History
+      </BaseButton>
+    </footer>
   </div>
 </template>
 
@@ -60,6 +69,10 @@ export default {
       type: Number,
       required: true
     },
+    name: {
+      type: String,
+      default: ''
+    }
   },
   mounted() {
     this.$store.dispatch(`${STORE_KEY}/getCustomer`, {id: this.id})
@@ -68,6 +81,11 @@ export default {
     ...mapGetters({
       customer: `${STORE_KEY}/customer`
     })
+  },
+  methods: {
+    gotoCustomerPayments() {
+      this.$router.push({ path: '/payments', query: { customerId: this.id, name: this.name } })
+    }
   }
 }
 </script>
