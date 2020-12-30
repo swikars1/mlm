@@ -60,17 +60,17 @@
         </div>
 
         <div class="dashboard-chart-wrapper">
-          <BaseEchart
+<!--           <BaseEchart
             type="pie"
             title="Male/Female Customer"
             :pie-data="genderPieChart"
+          /> -->
+          <BaseEchart
+            type="line"
+            title="Income Graph"
+            :x-axis="lineChart.xAxis"
+            :line-data="lineChart.lineData" 
           />
-<!--           <BaseEchart
-            type="bar"
-            title="Male/Female Customer"
-            :x-axis="['a','b','c','d','e','f','g']"
-            :legend="['Male/Female']"
-            :bar-data="barData" /> -->
         </div>
       </div>
   </div>
@@ -97,12 +97,12 @@ export default {
   },
   mounted() {
     this.$store.dispatch(`${DASHBOARD_STORE_KEY}/getWidgets`)
-    this.$store.dispatch(`${DASHBOARD_STORE_KEY}/getGenderPieChart`)
+    this.$store.dispatch(`${DASHBOARD_STORE_KEY}/getLineChart`)
   },
   computed: {
     ...mapGetters({
       widgets: `${DASHBOARD_STORE_KEY}/widgets`,
-      genderPieChart: `${DASHBOARD_STORE_KEY}/genderPieChart`
+      lineChart: `${DASHBOARD_STORE_KEY}/lineChart`
     })
   }
 }

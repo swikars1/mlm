@@ -15,12 +15,12 @@
           resource="customer"
           clearable
         />
-        <BaseInput 
-          v-model="payment.name"
-          name="name"
-          type="text" 
-          label="Payment Title" 
-          placeholder="Payment Title" 
+        <BaseRemoteSelect
+          placeholder="Select Shop"
+          v-model="payment.retailerId"
+          resource="retailer"
+          label="Select Shop"
+          clearable
         />
         <BaseInput 
           v-model="payment.billNo" 
@@ -28,13 +28,6 @@
           name="billNo"
           label="Bill Number" 
           placeholder="Bill Number"
-        />
-        <BaseRemoteSelect
-          placeholder="Select Shop"
-          v-model="payment.retailerId"
-          resource="retailer"
-          label="Select Shop"
-          clearable
         />
         <BaseInput 
           v-model="payment.expenditure" 

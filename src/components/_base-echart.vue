@@ -1,5 +1,6 @@
 <template>
   <div class="echarts-wrapper">
+    <h2>{{title}}</h2>
     <v-chart v-bind="$attrs" v-on="$listeners" :options="chartOptions[type]" />
   </div>
 </template>
@@ -9,6 +10,7 @@ import ECharts from 'vue-echarts'
 
 import 'echarts/lib/chart/pie'
 import 'echarts/lib/chart/bar'
+import 'echarts/lib/chart/line'
 
 export default {
   data() {
@@ -16,10 +18,6 @@ export default {
     }
   },
   props: {
-    pieData: {
-      type: Array,
-      default: () => []
-    },
     type: {
       type: String,
       required: true
@@ -40,6 +38,10 @@ export default {
       type: Array,
       default: () => []
     },
+    lineData: {
+      type: Array,
+      default: () => []
+    },
     xAxis: {
       type: Array,
       default: () => []
@@ -52,9 +54,11 @@ export default {
     chartOptions() {
       let pieChart = new ChartBuilder({ pieData: this.pieData, title: this.title })
       let barChart = new ChartBuilder({ barData: this.barData, title: this.title, xAxis: this.xAxis })
+      let lineChart = new ChartBuilder({ lineData: this.lineData, title: this.title, xAxis: this.xAxis })
       return {
         pie: pieChart.buildPie(),
-        bar: barChart.buildBar()
+        bar: barChart.buildBar(),
+        line: lineChart.buildLine()
       }
     }
   }

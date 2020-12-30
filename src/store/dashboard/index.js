@@ -6,7 +6,9 @@ const state = {
   widgets: {},
   widgetsLoading: false,
   genderPieChart: [],
-  genderPieChartLoading: false
+  genderPieChartLoading: false,
+  lineChart: [],
+  lineChartLoading: false
 }
 
 export default {

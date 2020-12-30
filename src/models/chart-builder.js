@@ -1,8 +1,9 @@
-class ChartBulder {
+class ChartBuilder {
   constructor(params) {
     this.pieData = params.pieData || []
     this.barData = params.barData || []
-    this.xAxis = params.xAxis || { data: [] }
+    this.lineData = params.lineData || []
+    this.xAxis = params.xAxis || []
     this.yAxis = params.yAxis || {}
     this.title = params.title || ''
   }
@@ -33,6 +34,23 @@ class ChartBulder {
     }
   }
 
+  buildLine() {
+    return {
+      xAxis: {
+          type: 'category',
+          data: this.xAxis
+      },
+      yAxis: {
+          type: 'value'
+      },
+      series: [{
+          data: this.lineData,
+          type: 'line',
+          smooth: true
+      }]
+    }
+  }
+
 }
 
-export default ChartBulder
+export default ChartBuilder

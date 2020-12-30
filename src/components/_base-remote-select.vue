@@ -17,7 +17,7 @@
         :value="item[valuePath] || item"
         :disabled="item.disabled"
       >
-        {{ item[labelPath] || item }}
+        {{ item[labelPath] || item }} (ID: {{ item[valuePath] }})
       </Option>
     </Select>
   </FormItem>

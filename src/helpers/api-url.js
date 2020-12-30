@@ -57,6 +57,11 @@ const GENDER_PIE_URL = () => ({
   methods: 'GET'
 })
 
+const LINE_CHART_URL = () => ({
+  url: `${API_URL_PREFIX}/dashboard/line_chart`,
+  methods: 'GET'
+})
+
 export {
   BASE_URL,
   LOGIN_PATH,
@@ -68,5 +73,6 @@ export {
   CUSTOMER_PAYMENT_PATH,
   IMAGE_UPLOAD_PATH,
   DASHBOARD_WIDGET_URL,
-  GENDER_PIE_URL
+  GENDER_PIE_URL,
+  LINE_CHART_URL
 }

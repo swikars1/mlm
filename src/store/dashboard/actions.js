@@ -23,7 +23,19 @@ const getGenderPieChart = (context, params) =>
     params
   })  
 
+const getLineChart = (context, params) =>
+  apiDispatcher(context, {
+    resource: Dashboard,
+    storeKey: 'lineChart',
+    loadingKey: 'lineChartLoading',
+    action: 'getLineChart',
+    commitType: 'show',
+    metaKey: 'meta',
+    params
+  })  
+
 export default {
   getWidgets,
-  getGenderPieChart
+  getGenderPieChart,
+  getLineChart
 }

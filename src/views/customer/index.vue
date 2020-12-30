@@ -13,8 +13,8 @@
           :columns="columns"
           :data="customers"
           :loading="customersLoading"
-          :deletable="false"
-          :editable="false"
+          :deletable="true"
+          :editable="true"
         > 
           <template #default="{ row }">
             <Tooltip

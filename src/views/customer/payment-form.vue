@@ -8,20 +8,6 @@
       :rules="paymentValidation"
     >
       <section>
-        <BaseInput 
-          v-model="customer.name"
-          type="text" 
-          name="name"
-          label="Payment Title" 
-          placeholder="Payment Title " 
-        />
-        <BaseInput 
-          v-model="customer.billNo" 
-          type="text"
-          name="billNo"
-          label="Bill Number" 
-          placeholder="Bill Number"
-        />
         <BaseRemoteSelect
           placeholder="Select Shop"
           label="Select Shop"
@@ -29,6 +15,13 @@
           v-model="customer.retailerId"
           resource="retailer"
           clearable
+        />
+        <BaseInput 
+          v-model="customer.billNo" 
+          type="text"
+          name="billNo"
+          label="Bill Number" 
+          placeholder="Bill Number"
         />
         <BaseInput 
           v-model="customer.expenditure" 
@@ -84,7 +77,8 @@ export default {
       const valid = await this.$refs.paymentcus.validate()
       if (!valid || !this.customer.retailerId)
         return
-      await this.$store.dispatch(`${CUSTOMER_STORE_KEY}/addPayment`, { customer: this.customer })      
+      await this.$store.dispatch(`${CUSTOMER_STORE_KEY}/addPayment`, { customer: this.customer })
+      await this.$store.dispatch(`${CUSTOMER_STORE_KEY}/getCustomers`)
       this.closeDrawer()
     },
   },

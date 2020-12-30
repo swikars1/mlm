@@ -13,7 +13,6 @@ class Payment extends ApplicationModel{
     }
     static customerPaymentRules() {
       return {
-        name: [{ required: true, message: 'Payment title required', trigger: 'blur' }],
         billNo: [{ required: true, message: 'Bill Number required', trigger: 'blur' }],
         expenditure: [{ required: true, message: 'Expenditure required', trigger: 'blur' }],
       }

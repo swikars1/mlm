@@ -103,6 +103,7 @@ export default {
       if (!valid)
         return
       await this.$store.dispatch(`${CUSTOMER_STORE_KEY}/${this.currentAction}Customer`, { customer: this.customer })
+      await this.$store.dispatch(`${CUSTOMER_STORE_KEY}/getCustomers`)
       this.closeDrawer()
     },
   },

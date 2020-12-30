@@ -1,6 +1,5 @@
 <template>
   <div class="show-page">
-    <BaseImageViewer :src="retailer.imageUrl"></BaseImageViewer>
     <List>
       <ListItem>
         <ListItemMeta title="Name" :description="retailer.name"/>
@@ -14,7 +13,10 @@
       <ListItem>
         <ListItemMeta title="Pan Number" :description="String(retailer.panNumber)"/>
       </ListItem>
-    </List> 
+    </List>
+    <div>
+      <BaseImageViewer class="d-inline-block p-a-2" v-for="(image, index) in retailer.avatars" :key="index" :src="image" />
+    </div>
   </div>
 </template>
 
