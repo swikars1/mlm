@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { LOGIN_PATH } from '@/helpers/api-url'
 import { v1HTTPService } from '@/helpers/http-service'
+import BaseNotice from '@/components/_base-notice.vue'
 
 const authRequest = ({commit, dispatch}, user) => {
     return new Promise((resolve, reject) => {
@@ -14,6 +15,7 @@ const authRequest = ({commit, dispatch}, user) => {
           resolve(resp)
         })
       .catch(err => {
+        BaseNotice.render({ props: { desc: err.response.data.errors.join('\n'), type: 'error' } })
         commit('AUTH_ERROR', err)
         localStorage.removeItem('user-token')
         delete axios.defaults.headers.common['Authorization']
