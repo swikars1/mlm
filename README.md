@@ -5,6 +5,10 @@ This project has a Ruby on Rails (postgres database) backend with restful apis.
 
 This web app is fully functional with a mobile app based on same apis.
 
+## DEPENDENCIES
+
+https://github.com/swikars1/mlm-api
+
 ## Project setup
 ```
 npm install
